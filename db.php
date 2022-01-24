@@ -125,18 +125,30 @@
 		}
 		public function add_teacher($data){
 			extract($data);
-			$query  =  "INSERT INTO `teacher`(`name`, `email`, `class`) VALUES ('$fname','$email','$class')";
+			$query  =  "INSERT INTO `teachers`(
+												`fname`, `lname`, 
+												`age`,`qualification`,
+												`gender`,`phone_no`
+												,`address`,`subject_id`,`class_id`
+												,`salary`) 
+						VALUES (
+								'$fname','$lname',
+								'$age','$qualification',
+								'$gender',
+								'$phone_no',
+								'$address','$subject_id',
+								'$class_id','$salary')";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
 		public function update_teacher($data){	
 			extract($data);
-			$query	= "UPDATE `teacher` SET `name` = '$fname',`email` = '$email',`subject`='$subject' WHERE `id` = '$id' ";
+			$query	= "UPDATE `teachers` SET `fname` = '$fname',`lname` = '$lname',`age`='$age',`qualification`='$qualification',`gender`='$gender',`phone_no`='$phone_no',`age`='$age',`address`='$address',`subject_id`='$subject_id',`class_id`='$class_id',`salary`='$salary' WHERE `id` = '$id' ";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
 		public function get_teacher($id){
-			$query	= "SELECT * FROM `teacher` WHERE `id` = '$id' ";
+			$query	= "SELECT * FROM `teachers` WHERE `id` = '$id' ";
 			$res 	= $this->conn->query($query);
 			
 			if ($res->num_rows>0) {	
@@ -145,12 +157,46 @@
 			}
 		}
 		public function delete_teacher($data){	
-			$query	= "DELETE FROM `teacher` WHERE `id` = '$data'";
+			$query	= "DELETE FROM `teachers` WHERE `id` = '$data'";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
+		public function count_teachers(){
+			$query = "SELECT count(*) as `total_tchr` FROM `teachers`";
+			$res = $this->conn->query($query);
+			return ($res->fetch_assoc());
+		}
+		public function sum_teachers_salary(){
+			$query = "SELECT sum(`salary`) as `total_tchr_salary` FROM `teachers`";
+			$res = $this->conn->query($query);
+			return ($res->fetch_assoc());
+		}
+		public function fetch_teachers_salary(){
+			$this->debug($res);
+			$query = "SELECT
+							   `tchr_salary`.`id`,
+							   `tchr_salary`.`teacher_id`,
+							   `tchr_salary`.`salary`,
+							   `tchr_salary`.`created_at`,
+							   `teachers` .`name`
+							   
+			 		  FROM 	   `tchr_salary`
+			 		  INNER JOIN `teachers`
+			 		  ON 		   `teachers`.`id` = `tchr_salary`.`teacher_id` ";
+			$res 	= $this->conn->query($query);
+			$i = 0;
+			$data = array();
+			while ($rows = $res->fetch_assoc()) {
+				foreach ($rows as $key => $value) {
+					$data[$i][$key] = $value;
+				}
+				$i++;
+			}
+			
+			return $data;
+		}	
 		public function fetch_teacher(){
-			$query = "SELECT * FROM `teacher` ";
+			$query = "SELECT * FROM `teachers` ";
 			$res 	= $this->conn->query($query);
 			$i = 0;
 			$data = array();
@@ -163,6 +209,93 @@
 			
 			return $data;
 		}
+		public function add_class($data){
+			extract($data);
+			$query  =  "INSERT INTO `classes`(`cls_name`) VALUES ('$cls_name')";
+			$res 	= $this->conn->query($query);
+			return $res;
+		}
+		public function update_class($data){	
+			extract($data);
+			$query	= "UPDATE `classes` SET `cls_name` = '$cls_name' WHERE `id` = '$id' ";
+			$res 	= $this->conn->query($query);
+			return $res;
+		}
+		public function get_class($id){
+			$query	= "SELECT * FROM `classes` WHERE `id` = '$id' ";
+			$res 	= $this->conn->query($query);
+			
+			if ($res->num_rows>0) {	
+				$record = $res->fetch_assoc();
+				return $record;
+			}
+		}
+		public function delete_class($data){	
+			$query	= "DELETE FROM `classes` WHERE `id` = '$data'";
+			$res 	= $this->conn->query($query);
+			return $res;
+		}
+		public function count_classes(){
+			$query = "SELECT count(*) as `total_cls` FROM `classes`";
+			$res = $this->conn->query($query);
+			return ($res->fetch_assoc());
+		}	
+		public function fetch_class(){
+			$query = "SELECT * FROM `classes` ";
+			$res 	= $this->conn->query($query);
+			$i = 0;
+			$data = array();
+			while ($rows = $res->fetch_assoc()) {
+				foreach ($rows as $key => $value) {
+					$data[$i][$key] = $value;
+				}
+				$i++;
+			}
+
+			
+			return $data;
+		}
+		public function add_tchr_salary($data){
+			extract($data);
+			$query  =  "INSERT INTO `tchr_salary`(`teacher_id`, `salary`,`created_at`) 
+						VALUES ('$teacher_id','$salary','$created_at')";
+			$res 	= $this->conn->query($query);
+			return $res;
+		}
+		public function update_tchr_salary($data){	
+			extract($data);
+			$query	= "UPDATE `tchr_salary` SET `teacher_id` = '$teacher_id',`salary` = '$salary',`created_at`='$created_at' WHERE `id` = '$id' ";
+			$res 	= $this->conn->query($query);
+			return $res;
+		}
+		public function get_tchr_salary($id){
+			$query	= "SELECT * FROM `tchr_salary` WHERE `id` = '$id' ";
+			$res 	= $this->conn->query($query);
+			
+			if ($res->num_rows>0) {	
+				$record = $res->fetch_assoc();
+				return $record;
+			}
+		}
+		public function delete_tchr_salary($data){	
+			$query	= "DELETE FROM `tchr_salary` WHERE `id` = '$data'";
+			$res 	= $this->conn->query($query);
+			return $res;
+		}		
+		public function fetch_tchr_salary(){
+			$query = "SELECT * FROM `tchr_salary` ";
+			$res 	= $this->conn->query($query);
+			$i = 0;
+			$data = array();
+			while ($rows = $res->fetch_assoc()) {
+				foreach ($rows as $key => $value) {
+					$data[$i][$key] = $value;
+				}
+				$i++;
+			}
+			
+			return $data;
+		}		
 		public function debug($data){
 			echo "<pre>";
 			print_r($data);

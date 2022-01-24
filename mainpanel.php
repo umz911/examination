@@ -1,7 +1,9 @@
 <?php
 	require ("head.php");
-	$tot_std 	  = $obj->count_students();
-	$tot_std_fees = $obj->sum_students_fees();
+	$tot_std 	  		  = $obj->count_students();
+	$tot_std_fees 		  = $obj->sum_students_fees();
+	$tot_tchr		 	  = $obj->count_teachers();
+	$tot_tchr_salary 	  = $obj->sum_teachers_salary();
 
  ?>
 <div class="main-panel">
@@ -30,7 +32,7 @@
 							<div class="row align-items-center">
 								<div class="col-icon">
 									<div class="icon-big text-center icon-primary bubble-shadow-small">
-										<i class="fas fa-users"></i>
+										<i class="fas fa-user-graduate"></i>
 									</div>
 								</div>
 								<div class="col col-stats ml-3 ml-sm-0">
@@ -49,13 +51,13 @@
 							<div class="row align-items-center">
 								<div class="col-icon">
 									<div class="icon-big text-center icon-info bubble-shadow-small">
-										<i class="far fa-newspaper"></i>
+										<i class="fas fa-user"></i>
 									</div>
 								</div>
 								<div class="col col-stats ml-3 ml-sm-0">
 									<div class="numbers">
-										<p class="card-category">Teacher</p>
-										<h4 class="card-title">1303</h4>
+										<p class="card-category">Teachers</p>
+										<h4 class="card-title"><?php echo $tot_tchr['total_tchr']?></h4>
 									</div>
 								</div>
 							</div>
@@ -68,7 +70,7 @@
 							<div class="row align-items-center">
 								<div class="col-icon">
 									<div class="icon-big text-center icon-success bubble-shadow-small">
-										<i class="far fa-chart-bar"></i>
+										<i class="fas fa-archive"></i>
 									</div>
 								</div>
 								<div class="col col-stats ml-3 ml-sm-0">
@@ -87,13 +89,13 @@
 							<div class="row align-items-center">
 								<div class="col-icon">
 									<div class="icon-big text-center icon-secondary bubble-shadow-small">
-										<i class="far fa-check-circle"></i>
+										<i class="fas fa-hand-holding-usd"></i>
 									</div>
 								</div>
 								<div class="col col-stats ml-3 ml-sm-0">
 									<div class="numbers">
 										<p class="card-category">Teachers Total Salary</p>
-										<h4 class="card-title">576</h4>
+										<h4 class="card-title"><?php echo $tot_tchr_salary['total_tchr_salary']?></h4>
 									</div>
 								</div>
 							</div>

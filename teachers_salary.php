@@ -4,8 +4,7 @@
 	require ("head.php");
 	require ('db.php');
 	$obj->is_logged_in();
-
-	$teachers  = $obj->fetch_teacher();
+	$teacher_salary  = $obj->fetch_tchr_salary();
 ?>
 <body>
 	<div class="wrapper">
@@ -19,42 +18,41 @@
 				<div class="content">
 					<div class="page-inner">
 						<div class="page-header">
-							<h4 class="page-title">Teachers</h4>
+							<h4 class="page-title">Teachers Salary</h4>
 						</div>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
 										<div class="d-flex align-items-center">
-											<h4 class="card-title">Teachers</h4>
-											<a href="add_new_teacher.php" class="btn btn-primary btn-round ml-auto"><i class="fa fa-plus"></i> Add New Teacher </a>
+											<h4 class="card-title">Teacher Salary</h4>
+											<a href="add_new_tchr_salary.php" class="btn btn-primary btn-round ml-auto"><i class="fa fa-plus"></i> Add New Teacher Salary </a>
 										</div>
 									</div>
 									<div class="card-body">
+									
 										<div class="table-responsive">
 											<table id="add-row" class="display table table-striped table-hover" >
 												<thead>
 													<tr>
 														<th>Id</th>
-														<th>First Name</th>
-														<th>Last Name</th>
-														<th>Age</th>
-														<th>Qualification</th>
+														<th>Teacher_id</th>
+														<th>Salary</th>
+														<th>Created_at</th>
 														<th style="width: 20=%">Action</th>
 													</tr>
 												</thead>
 												<tbody>
-													<?php foreach ($teachers as $key => $value) { ?>
+													<?php foreach ($teacher_salary as $key => $value) { ?>
 													<tr>
 														<td><?php echo $value['id']?></td>
-														<td><?php echo $value['fname']?></td>
-														<td><?php echo $value['lname']?></td>
-														<td><?php echo $value['age']?></td>
-														<td><?php echo $value['qualification']?></td>
+														<td><?php echo $value['teacher_id']?></td>
+														<td><?php echo $value['salary']?></td>
+														<td><?php echo $value['created_at']?></td>
 														<td>
-															<a href="view_teacher.php?id=<?php echo $value['id']?> "class="btn btn-link"><i class="fa fa-eye"></i></a>
-															<a href="edit_teacher.php?id=<?php echo $value['id']?>"class="btn btn-link btn-primary btn-lg"><i class="fa fa-edit"></i></a>
-															<a href="process.php?id=<?php echo $value['id']?>&submit_dlt=delete_teacher"class="btn btn-link btn-danger"><i class="fas fa-trash"></i></a>
+															<a href="view_tchr_salary.php?id=<?php echo $value['id']?> "class="btn btn-link"><i class="fa fa-eye"></i></a>
+															<a href="edit_tchr_salary.php?id=<?php echo $value['id']?>"class="btn btn-link btn-primary btn-lg"><i class="fa fa-edit"></i></a>
+															<a href="process.php?id=<?php echo $value['id']?>&submit_dlt=delete_tchr_salary"class="btn btn-link btn-danger"><i class="fas fa-trash"></i></a>
 														</td>
 													</tr>
 												<?php }?>

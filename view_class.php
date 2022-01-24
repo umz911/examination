@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-	require ("head.php");
+	require "head.php";
 	require ('db.php');
 	$obj->is_logged_in();
-
-	$teachers  = $obj->fetch_teacher();
+		
+	if (isset($_GET['id'])){
+		$id 	   = $_GET['id'];
+		$classes   = $obj->get_class($id);
+	}
 ?>
 <body>
 	<div class="wrapper">
@@ -14,64 +17,41 @@
 			<?php require "nav_bar.php";?>
 		</div>
 		<?php require "sidebar.php";?>
-		<form action="process.php" method="POST">
-			<div class="main-panel">
-				<div class="content">
-					<div class="page-inner">
-						<div class="page-header">
-							<h4 class="page-title">Teachers</h4>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="card">
+		<div class="main-panel">
+			<div class="content">
+				<div class="page-inner">
+					<div class="page-header">
+						<h4 class="page-title">View Class</h4>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div class="card">
 									<div class="card-header">
 										<div class="d-flex align-items-center">
-											<h4 class="card-title">Teachers</h4>
-											<a href="add_new_teacher.php" class="btn btn-primary btn-round ml-auto"><i class="fa fa-plus"></i> Add New Teacher </a>
+											<h4 class="card-title">View class</h4>
+											<a href="classes.php" class="btn btn-primary btn-round ml-auto"><i class="fas fa-chevron-left"></i></a>
 										</div>
 									</div>
-									<div class="card-body">
-										<div class="table-responsive">
-											<table id="add-row" class="display table table-striped table-hover" >
-												<thead>
-													<tr>
-														<th>Id</th>
-														<th>First Name</th>
-														<th>Last Name</th>
-														<th>Age</th>
-														<th>Qualification</th>
-														<th style="width: 20=%">Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<?php foreach ($teachers as $key => $value) { ?>
-													<tr>
-														<td><?php echo $value['id']?></td>
-														<td><?php echo $value['fname']?></td>
-														<td><?php echo $value['lname']?></td>
-														<td><?php echo $value['age']?></td>
-														<td><?php echo $value['qualification']?></td>
-														<td>
-															<a href="view_teacher.php?id=<?php echo $value['id']?> "class="btn btn-link"><i class="fa fa-eye"></i></a>
-															<a href="edit_teacher.php?id=<?php echo $value['id']?>"class="btn btn-link btn-primary btn-lg"><i class="fa fa-edit"></i></a>
-															<a href="process.php?id=<?php echo $value['id']?>&submit_dlt=delete_teacher"class="btn btn-link btn-danger"><i class="fas fa-trash"></i></a>
-														</td>
-													</tr>
-												<?php }?>
-												</tbody>
-											</table>
-										</div>
+								<div class="card-body">
+									<div class="form-group">
+										<label for="id"><h3>Id:</h3></label>
+										<label for="id"><h3><?php echo $classes['id'];?></h3></label>
 									</div>
+									<div class="form-group">
+										<label for="cls_name"><h3>Class Name:</h3></label>
+										<label for="cls_name"><h3><?php echo $classes['cls_name'];?></h3></label>
+									</div>		
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>		
-			</div>
-		</form>
+				</div>
+			</div>	
+		</div>		
 	</div>
+</body>
 	<?php require "footbar.php";?>
-	<script>
+		<script>
 		$(document).ready(function() {
 			$('#basic-datatables').DataTable({
 			});
@@ -119,5 +99,4 @@
 			});
 		});
 	</script>
-</body>
 </html>

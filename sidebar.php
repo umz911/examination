@@ -62,6 +62,24 @@
 						<p>Teachers</p>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a href="classes.php">
+						<i class="fas fa-book-open"></i>
+						<p>Classes</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="teachers_salary.php">
+						<i class="fas fa-hand-holding-usd"></i>
+						<p>Teachers Salary</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="student_fees.php">
+						<i class="fas fa-archive"></i>
+						<p>Student Fees</p>
+					</a>
+				</li>										
 			</ul>
 		</div>
 	</div>

@@ -7,7 +7,7 @@
 		
 	if (isset($_GET['id'])){
 		$id 	   = $_GET['id'];
-		$students  = $obj->get_student($id);
+		$teachers  = $obj->get_teacher($id);
 	}
 ?>
 <body>
@@ -21,65 +21,61 @@
 			<div class="content">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">View Student</h4>
+						<h4 class="page-title">View Teacher</h4>
 					</div>
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 									<div class="card-header">
 										<div class="d-flex align-items-center">
-											<h4 class="card-title">View Student</h4>
+											<h4 class="card-title">View Teacher</h4>
 											<a href="students.php" class="btn btn-primary btn-round ml-auto"><i class="fas fa-chevron-left"></i></a>
 										</div>
 									</div>
 								<div class="card-body">
 									<div class="form-group">
 										<label for="id"><h3>Id:</h3></label>
-										<label for="id"><h3><?php echo $students['id'];?></h3></label>
+										<label for="id"><h3><?php echo $teachers['id'];?></h3></label>
 									</div>
 									<div class="form-group">
 										<label for="fname"><h3>First Name:</h3></label>
-										<label for="fname"><h3><?php echo $students['fname'];?></h3></label>
+										<label for="fname"><h3><?php echo $teachers['fname'];?></h3></label>
 									</div>
 									<div class="form-group">
 										<label for="lname"><h3>Last Name:</h3></label>
-										<label for="lname"><h3><?php echo $students['lname'];?></h3></label>
-									</div>
-									<div class="form-group">
-										<label for="fees"><h3>Fees:</h3></label>
-										<label for="fees"><h3><?php echo $students['fees'];?></h3></label>
-									</div>
-									<div class="form-group">
-										<label for="date_of_birth"><h3>Date_of_Birth:</h3></label>
-										<label for="date_of_birth"><h3><?php echo $students['date_of_birth'];?></h3></label>
-									</div>
-									<div class="form-group">
-										<label for="date_of_admission"><h3>Date_of_admission:</h3></label>
-										<label for="date_of_admission"><h3><?php echo $students['date_of_admission'];?></h3></label>
-									</div>
-									<div class="form-group">
-										<label for="qualification"><h3>qualification:</h3></label>
-										<label for="qualification"><h3><?php echo $students['qualification'];?></h3></label>
+										<label for="lname"><h3><?php echo $teachers['lname'];?></h3></label>
 									</div>
 									<div class="form-group">
 										<label for="age"><h3>Age:</h3></label>
-										<label for="age"><h3><?php echo $students['age'];?></h3></label>
+										<label for="age"><h3><?php echo $teachers['age'];?></h3></label>
 									</div>
 									<div class="form-group">
-										<label for="gender"><h3>Gender:</h3></label>
-										<label for="gender"><h3><?php echo $students['gender'];?></h3></label>
+										<label for="qualification"><h3>qualification:</h3></label>
+										<label for="qualification"><h3><?php echo $teachers['qualification'];?></h3></label>
 									</div>
 									<div class="form-group">
-										<label for="martial_status"><h3>Martial_status:</h3></label>
-										<label for="martial_status"><h3><?php echo $students['martial_status'];?></h3></label>
+										<label for="gender"><h3>gender:</h3></label>
+										<label for="gender"><h3><?php echo $teachers['gender'];?></h3></label>
 									</div>
 									<div class="form-group">
-										<label for="phone_no"><h3>Phone_no:</h3></label>
-										<label for="phone_no"><h3><?php echo $students['phone_no'];?></h3></label>
+										<label for="phone_no"><h3>phone_no:</h3></label>
+										<label for="phone_no"><h3><?php echo $teachers['phone_no'];?></h3></label>
 									</div>
 									<div class="form-group">
-										<label for="address"><h3>Address:</h3></label>
-										<label for="address"><h3><?php echo $students['address'];?></h3></label>
+										<label for="address"><h3>address:</h3></label>
+										<label for="address"><h3><?php echo $teachers['address'];?></h3></label>
+									</div>
+									<div class="form-group">
+										<label for="subject_id"><h3>subject_id:</h3></label>
+										<label for="subject_id"><h3><?php echo $teachers['subject_id'];?></h3></label>
+									</div>
+									<div class="form-group">
+										<label for="class_id"><h3>class_id:</h3></label>
+										<label for="class_id"><h3><?php echo $teachers['class_id'];?></h3></label>
+									</div>
+									<div class="form-group">
+										<label for="salary"><h3>salary:</h3></label>
+										<label for="salary"><h3><?php echo $teachers['salary'];?></h3></label>
 									</div>			
 								</div>
 							</div>

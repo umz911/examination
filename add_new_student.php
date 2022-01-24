@@ -31,7 +31,7 @@
 									<div class="card-body">
 										<div class="form-group">
 											<label for="fname">First Name</label>
-											<input type="text" class="form-control" name = "fname" id="fname" placeholder=" fname">
+											<input type="name" class="form-control" name = "fname" id="fname" placeholder=" fname">
 										</div>
 										<div class="form-group">
 											<label for="lname">Last Name</label>
@@ -39,7 +39,7 @@
 										</div>
 										<div class="form-group">
 											<label for="fees">Fees</label>
-											<input type="text" class="form-control" name = "fees" id="fees" placeholder="fees">
+											<input type="name" class="form-control" name = "fees" id="fees" placeholder="fees">
 										</div>
 										<div class="form-group">
 											<label for="date_of_birth">Date_of_Birth</label>
@@ -51,7 +51,7 @@
 										</div>
 										<div class="form-group">
 											<label for="qualification">Qualification</label>
-											<input type="text" class="form-control" name = "qualification" id="qualification" placeholder="qualification">
+											<input type="name" class="form-control" name = "qualification" id="qualification" placeholder="qualification">
 										</div>
 										<div class="form-group">
 											<label for="age">Age</label>
@@ -59,11 +59,11 @@
 										</div>
 										<div class="form-group">
 											<label for="gender">Gender</label>
-											<input type="text" class="form-control" name = "gender" id="gender" placeholder="gender">
+											<input type="number" class="form-control" name = "gender" id="gender" placeholder="gender">
 										</div>
 										<div class="form-group">
 											<label for="martial_status">Martial Status</label>
-											<input type="text" class="form-control" name = "martial_status" id="martial_status" placeholder="martial_status">
+											<input type="name" class="form-control" name = "martial_status" id="martial_status" placeholder="martial_status">
 										</div>
 										<div class="form-group">
 											<label for="phone_no">Phone Number</label>

@@ -42,7 +42,7 @@
 														<th>Qualification</th>
 														<th>Age</th>
 														<th>Gender</th>
-														<th style="width: 20%">Action</th>
+														<th style="width: 20=%">Action</th>
 													</tr>
 												</thead>
 												<tbody>
