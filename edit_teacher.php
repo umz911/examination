@@ -4,6 +4,8 @@
 	require "head.php";
 	require ('db.php');
 	$obj->is_logged_in();
+	$data  = $obj->fetch_qualifications();
+
 	
 	if (isset($_GET['id'])){
 		$id 	   = $_GET['id'];
@@ -33,36 +35,96 @@
 										</div>
 									</div>
 									<div class="card-body">
-
 										<form action="process.php" method="POST">
-											<div class="form-group">
-												<input type="hidden"  name = "id" value = "<?php echo $teacher['id'];?>">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<input type="hidden"  name = "id" value = "<?php echo $teacher['id'];?>">
+														<label for="fname">First Name</label>
+														<input type="text" class="form-control" name = "fname" value = "<?php echo $teacher['fname'];?>" id="fname" placeholder="First Name">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="lname">Last Name</label>
+														<input type="lname" class="form-control" name = "lname"  value = "<?php echo $teacher['lname'];?>" id="lname" placeholder="Email Address">
+													</div>												
+												</div>												
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="qualification">Qualification</label>
+														<select name="qualification" id="qualification" class="form-control">
+																<!-- <option>Please Select</option> -->
+																<?php foreach ($data as $key => $value) { ?>
 
-												<label for="fname">First Name</label>
-												<input type="text" class="form-control" name = "fname" value = "<?php echo $teacher['fname'];?>" id="fname" placeholder="First Name">
+																<?php if($value['name'] == $teachers['qualification']){?>
+
+																	<option selected value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
+																<?php }else{ ?>
+																	<option value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>S
+																<?php }?>
+
+																<?php }?>
+														</select>
+													</div>													
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="gender">Gender</label>
+														<select type="number" class="form-control" name = "gender" id="gender" required>
+
+															<!-- <option>Please Select</option> -->
+															<?php if($teachers['gender'] == 0){?>
+																
+																<option value="0" selected>Male</option>
+																<option value="1">Female</option>
+																<option value="2">Other</option>
+
+															<?php }else  if($teachers['gender'] == 1){?>
+																<option value="0" >Male</option>
+																<option value="1"selected>Female</option>
+																<option value="2">Other</option>
+															<?php }else{?>
+
+																<option value="0" >Male</option>
+																<option value="1">Female</option>
+																<option value="2" selected>Other</option>
+															<?php }?>
+														</select>
+													</div>													
+												</div>
 											</div>
+											<div class="row">
+												<div class="col-md-3">
+													<div class="form-group">
+														<label for="subject_id">Subject Id</label>
+														<input type="number" class="form-control" name = "subject_id"  value = "<?php echo $teacher['subject_id'];?>" id="subject_id" placeholder="subject_id">
+													</div>													
+												</div>
+												<div class="col-md-3">
+													<div class="form-group">
+														<label for="salary">Salary</label>
+														<input type="number" class="form-control" name = "salary"  value = "<?php echo $teacher['salary'];?>" id="salary" placeholder="salary">
+													</div>													
+												</div>
+												<div class="col-md-3">
+													<div class="form-group">
+														<label for="class_id">Class Id</label>
+														<input type="number" class="form-control" name = "class_id"  value = "<?php echo $teacher['class_id'];?>" id="class_id" placeholder="class_id">
+													</div>													
+												</div>												
+												<div class="col-md-3">
+													<div class="form-group">
+														<label for="phone_no">Phone_no</label>
+														<input type="tel" class="form-control" name = "phone_no"  value = "<?php echo $teacher['phone_no'];?>" id="phone_no" placeholder="phone_no">
+													</div>													
+												</div>												
+											</div>												
+
 											<div class="form-group">
-												<label for="lname">Last Name</label>
-												<input type="lname" class="form-control" name = "lname"  value = "<?php echo $teacher['lname'];?>" id="lname" placeholder="Email Address">
-											</div>
-											<div class="form-group">
-												<label for="age">age</label>
-												<input type="number" class="form-control" name = "age"  value = "<?php echo $teacher['age'];?>" id="age" placeholder="age">
-											</div>
-											<div class="form-group">
-												<label for="qualification">qualification</label>
-												<input type="text" class="form-control" name = "qualification"  value = "<?php echo $teacher['qualification'];?>" id="qualification" placeholder="qualification">
-											</div>
-											<div class="form-group">
-												<label for="gender">gender</label>
-												<input type="text" class="form-control" name = "gender"  value = "<?php echo $teacher['gender'];?>" id="gender" placeholder="gender">
-											</div>
-											<div class="form-group">
-												<label for="phone_no">phone_no</label>
-												<input type="tel" class="form-control" name = "phone_no"  value = "<?php echo $teacher['phone_no'];?>" id="phone_no" placeholder="phone_no">
-											</div>
-											<div class="form-group">
-												<label for="address">address</label>
+												<label for="address">Address</label>
 												<input type="text" class="form-control" name = "address"  value = "<?php echo $teacher['address'];?>" id="address" placeholder="address">
 											</div>																							
 											<button type="submit" name="submit_btn" value="update_teacher" class="btn btn-primary btn-lg">Submit</button>

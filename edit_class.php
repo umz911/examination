@@ -7,7 +7,7 @@
 	
 	if (isset($_GET['id'])){
 		$id 	   = $_GET['id'];
-		$classes   = $obj->get_tchr_salary($id);
+		$classes   = $obj->get_class($id);
 	}
 ?>
 <body>
@@ -28,8 +28,8 @@
 								<div class="card">
 									<div class="card-header">
 										<div class="d-flex align-items-center">
-											<h4 class="card-title">Edit Student</h4>
-											<a href="teachers_salary.php" class="btn btn-primary btn-round ml-auto"><i class="fas fa-chevron-left"></i></a>
+											<h4 class="card-title">Edit Class</h4>
+											<a href="students.php" class="btn btn-primary btn-round ml-auto"><i class="fas fa-chevron-left"></i></a>
 										</div>
 									</div>
 									<div class="card-body">

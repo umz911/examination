@@ -5,8 +5,7 @@
 	  require ('db.php');
 	  $obj->is_logged_in();
 
-	  $teachers  = $obj->fetch_teacher();
-
+	  $students  = $obj->fetch_student();
 ?>
 <body>
 	<div class="wrapper">
@@ -20,39 +19,37 @@
 				<div class="content">
 					<div class="page-inner">
 						<div class="page-header">
-							<h4 class="page-title">Add New Teacher Salary</h4>
+							<h4 class="page-title">Add New Student Fees</h4>
 						</div>
 						<div class="row">
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
 										<div class="d-flex align-items-center">
-											<h4 class="card-title">New Teacher Salary</h4>
-											<a href="teachers_salary.php" class="btn btn-primary btn-round ml-auto"><i class="fas fa-chevron-left"></i></a>
+											<h4 class="card-title">New Student Fees</h4>
+											<a href="student_fees.php" class="btn btn-primary btn-round ml-auto"><i class="fas fa-chevron-left"></i></a>
 										</div>
 									</div>
 									<div class="card-body">
 										<div class="form-group">
-											<label for="teacher_id">Teacher Id</label>
-											<select name="teacher_id" id="teacher_id" class="form-control">
+											<label for="std_id">Student Id</label>
+											<select name="std_id" id="std_id" class="form-control">
 												<option selected=" " disabled=" ">Please Select</option>
-												<?php foreach ($teachers as $key => $value) { ?>
-
+												<?php foreach ($students as $key => $value) { ?>
 												<option value="<?php echo $value['id']?>"><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>
-											<?php }?>
-												
+												<?php }?>
 											</select>
 										</div>
 										<div class="form-group">
-											<label for="salary">Salary</label>
-											<input type="number" class="form-control" name = "salary" id="salary" placeholder=" Enter Salary">
+											<label for="fees">Fees</label>
+											<input type="number" class="form-control" name = "fees" id="fees" placeholder=" Enter Fees" required>
 										</div>
 										<!-- <div class="form-group">
 											<label for="created_at">Created_at</label>
 											<input type="date" class="form-control" name = "created_at" id="created_at" placeholder=" created_at">
 										</div> -->
 										<div class="form-group">
-											<button type="submit" name="submit_btn" value="add_tchr_salary" class="btn btn-primary btn-lg">Submit</button>
+											<button type="submit" name="submit_btn" value="add_std_fees" class="btn btn-primary btn-lg">Submit</button>
 										</div>
 									</div>
 								</div>
@@ -65,23 +62,23 @@
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function (){
-			$('#teacher_id').change(function (){
-				var teacher_id = $('#teacher_id').val();
+			$('#std_id').change(function (){
+				var std_id = $('#std_id').val();
 				$.ajax({
 					type: "POST",
 					url: "request.php",
 					data:{
-						id  : teacher_id,
-						fn  :'fetch_tchr_salary_by_id'
+						id  : std_id,
+						fn  :'fetch_std_fees_by_id'
 					},
 					success: function (result){
 						var res = $.parseJSON(result);
-						$('#salary').val(res.salary)
+						$('#fees').val(res.fees)
 					}
 				});
 			})
 		})
-	</script>	
+	</script>
 <?php require "footbar.php";?>
 </body>
 </html>

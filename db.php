@@ -41,24 +41,49 @@
 		public function add_student($data){
 			extract($data);
 			$query  =  "INSERT INTO `students`(
-												`fname`, `lname`, 
-												`fees`,`date_of_birth`,
-												`date_of_admission`,`qualification`
-												,`age`,`gender`,`martial_status`
-												,`phone_no`,`address`) 
-						VALUES (
-								'$fname','$lname',
-								'$fees','$date_of_birth',
-								'$date_of_admission',
-								'$qualification','$age',
-								'$gender','$martial_status',
-								'$phone_no','$address')";
+												`fname`, 
+												`lname`, 
+												`fees`,
+												`date_of_birth`,
+												`date_of_admission`,
+												`qualification`,
+												`age`,
+												`gender`,
+												`martial_status`,
+												`phone_no`,
+												`address`
+											  ) 
+									VALUES 	(
+												'$fname',
+												'$lname',
+												'$fees',
+												'$date_of_birth',
+												'$date_of_admission',
+												'$qualification',
+												'$age',
+												'$gender',
+												'$martial_status',
+												'$phone_no',
+												'$address'
+											 )";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
 		public function update_student($data){	
 			extract($data);
-			$query	= "UPDATE `students` SET `fname` = '$fname',`lname` = '$lname',`fees`='$fees',`date_of_birth`='$date_of_birth',`date_of_admission`='$date_of_admission',`qualification`='$qualification',`age`='$age',`gender`='$gender',`martial_status`='$martial_status',`phone_no`='$phone_no',`address`='$address' WHERE `id` = '$id' ";
+			$query	= "UPDATE `students` SET 
+												`fname` = '$fname',
+												`lname` = '$lname',
+												`fees`='$fees',
+												`date_of_birth`='$date_of_birth',
+												`date_of_admission`='$date_of_admission',
+												`qualification`='$qualification',
+												`age`='$age',
+												`gender`='$gender',
+												`martial_status`='$martial_status',
+												`phone_no`='$phone_no',
+												`address`='$address' 
+										WHERE `id` = '$id' ";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
@@ -123,21 +148,48 @@
 			
 			return $data;
 		}
+
+		public function fetch_qualifications(){
+			$query = "SELECT * FROM `qualifications` ";
+			$res 	= $this->conn->query($query);
+			$i = 0;
+			$data = array();
+			while ($rows = $res->fetch_assoc()) {
+				foreach ($rows as $key => $value) {
+					$data[$i][$key] = $value;
+				}
+				$i++;
+			}
+			
+			return $data;
+		}
+
 		public function add_teacher($data){
 			extract($data);
 			$query  =  "INSERT INTO `teachers`(
-												`fname`, `lname`, 
-												`age`,`qualification`,
-												`gender`,`phone_no`
-												,`address`,`subject_id`,`class_id`
-												,`salary`) 
-						VALUES (
-								'$fname','$lname',
-								'$age','$qualification',
-								'$gender',
-								'$phone_no',
-								'$address','$subject_id',
-								'$class_id','$salary')";
+												`fname`,
+												`lname`, 
+												`age`,
+												`qualification`,
+												`gender`,
+												`phone_no`,
+												`address`,
+												`subject_id`,
+												`class_id`,
+												`salary`
+											   ) 
+									  VALUES (
+												'$fname',
+												'$lname',
+												'$age',
+												'$qualification',
+												'$gender',
+												'$phone_no',
+												'$address',
+												'$subject_id',
+												'$class_id',
+												'$salary'
+											   )";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
@@ -172,17 +224,16 @@
 			return ($res->fetch_assoc());
 		}
 		public function fetch_teachers_salary(){
-			$this->debug($res);
-			$query = "SELECT
-							   `tchr_salary`.`id`,
-							   `tchr_salary`.`teacher_id`,
-							   `tchr_salary`.`salary`,
-							   `tchr_salary`.`created_at`,
-							   `teachers` .`name`
-							   
-			 		  FROM 	   `tchr_salary`
-			 		  INNER JOIN `teachers`
-			 		  ON 		   `teachers`.`id` = `tchr_salary`.`teacher_id` ";
+				$query = "SELECT
+							    `tchr_salary`.`id`,
+							    `tchr_salary`.`salary`,
+							    `tchr_salary`.`created_at`,
+							    `teachers`.`fname`,
+							    `teachers`.`lname`
+						   
+		 		  FROM 	   		`tchr_salary`
+		 		  INNER JOIN 	`teachers`
+		 		  ON 		   	`teachers`.`id` = `tchr_salary`.`teacher_id` ";
 			$res 	= $this->conn->query($query);
 			$i = 0;
 			$data = array();
@@ -239,7 +290,7 @@
 			$query = "SELECT count(*) as `total_cls` FROM `classes`";
 			$res = $this->conn->query($query);
 			return ($res->fetch_assoc());
-		}	
+		}			
 		public function fetch_class(){
 			$query = "SELECT * FROM `classes` ";
 			$res 	= $this->conn->query($query);
@@ -257,14 +308,14 @@
 		}
 		public function add_tchr_salary($data){
 			extract($data);
-			$query  =  "INSERT INTO `tchr_salary`(`teacher_id`, `salary`,`created_at`) 
-						VALUES ('$teacher_id','$salary','$created_at')";
+			$query  =  "INSERT INTO `tchr_salary`(`teacher_id`, `salary`) 
+						VALUES ('$teacher_id','$salary')";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
 		public function update_tchr_salary($data){	
 			extract($data);
-			$query	= "UPDATE `tchr_salary` SET `teacher_id` = '$teacher_id',`salary` = '$salary',`created_at`='$created_at' WHERE `id` = '$id' ";
+			$query	= "UPDATE `tchr_salary` SET `teacher_id` = '$teacher_id',`salary` = '$salary' WHERE `id` = '$id' ";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
@@ -283,7 +334,18 @@
 			return $res;
 		}		
 		public function fetch_tchr_salary(){
-			$query = "SELECT * FROM `tchr_salary` ";
+
+			$query = "SELECT
+							    `tchr_salary`.`id`,
+							    `tchr_salary`.`salary`,
+							    `tchr_salary`.`created_at`,
+							    `teachers`.`fname`,
+							    `teachers`.`lname`
+						   
+		 		  FROM 	   		`tchr_salary`
+		 		  INNER JOIN 	`teachers`
+		 		  ON 		   	`teachers`.`id` = `tchr_salary`.`teacher_id` ";
+
 			$res 	= $this->conn->query($query);
 			$i = 0;
 			$data = array();
@@ -295,7 +357,83 @@
 			}
 			
 			return $data;
+		}
+		public function fetch_tchr_salary_by_id($data){
+			extract($data);
+			$query	= "SELECT salary FROM `teachers` WHERE `id` = '$id' ";
+			$res    = $this->conn->query($query);
+			
+			if ($res->num_rows>0) {
+				$record = $res->fetch_assoc();
+				
+				echo json_encode(array("salary"=>$record['salary']));
+				return true;
+			}
 		}		
+		public function add_std_fees($data){
+			extract($data);
+			$query  =  "INSERT INTO `std_fees`(`std_id`, `fees`) 
+						VALUES ('$std_id','$fees')";
+			$res 	= $this->conn->query($query);
+			return $res;
+		}
+		public function update_std_fees($data){	
+			extract($data);
+			$query	= "UPDATE `std_fees` SET `std_id` = '$std_id',`fees` = '$fees' WHERE `id` = '$id' ";
+			$res 	= $this->conn->query($query);
+			return $res;
+		}
+		public function get_std_fees($id){
+			$query	= "SELECT * FROM `std_fees` WHERE `id` = '$id' ";
+			$res 	= $this->conn->query($query);
+			
+			if ($res->num_rows>0) {	
+				$record = $res->fetch_assoc();
+				return $record;
+			}
+		}
+		public function delete_std_fees($data){	
+			$query	= "DELETE FROM `std_fees` WHERE `id` = '$data'";
+			$res 	= $this->conn->query($query);
+			return $res;
+		}		
+		public function fetch_std_fees(){
+
+			$query = "SELECT
+							    `std_fees`.`id`,
+							    `std_fees`.`fees`,
+							    `std_fees`.`created_at`,
+							    `students`.`fname`,
+							    `students`.`lname`
+						   
+		 		  FROM 	   		`std_fees`
+		 		  INNER JOIN 	`students`
+		 		  ON 		   	`students`.`id` = `std_fees`.`std_id` ";
+
+			$res 	= $this->conn->query($query);
+			$i = 0;
+			$data = array();
+			while ($rows = $res->fetch_assoc()) {
+				foreach ($rows as $key => $value) {
+					$data[$i][$key] = $value;
+				}
+				$i++;
+			}
+			
+			return $data;
+		}
+		public function fetch_std_fees_by_id($data){
+			extract($data);
+			$query	= "SELECT fees FROM `students` WHERE `id` = '$id' ";
+			$res    = $this->conn->query($query);
+			
+			if ($res->num_rows>0) {
+				$record = $res->fetch_assoc();
+				
+				echo json_encode(array("fees"=>$record['fees']));
+				return true;
+			}
+		}
 		public function debug($data){
 			echo "<pre>";
 			print_r($data);
