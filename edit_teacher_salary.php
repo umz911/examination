@@ -4,6 +4,9 @@
 	require "head.php";
 	require ('db.php');
 	$obj->is_logged_in();
+	$teachers  = $obj->fetch_teacher();
+
+
 	
 	if (isset($_GET['id'])){
 		$id 	          = $_GET['id'];
@@ -34,21 +37,22 @@
 									</div>
 									<div class="card-body">
 										<form action="process.php" method="POST">
-											<div class="form-group">
-												<input type="hidden"  name = "id" value = "<?php echo $teacher_salary['id'];?>">
-
-												<label for="teacher_id">Teacher Id</label>
-												<input type="text" class="form-control" name = "teacher_id" value = "<?php echo $teacher_salary['teacher_id'];?>" id="teacher_id" placeholder="teacher_id">
+											<div class="form-group">	
+												<label for="teacher_id">Teacher Name</label>
+												<select name="teacher_id" id="teacher_id" class="form-control">
+													<?php foreach ($teachers as $key => $value) { ?>
+														
+													<option value="<?php echo $value['id']?>" <?php echo $selected = ($value['id'] == $teacher_salary['teacher_id']) ? 'selected': ''; ?>><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>
+													<?php }?>
+												</select>
 											</div>
 											<div class="form-group">
 												<label for="salary">Salary</label>
-												<input type="text" class="form-control" name = "salary" value = "<?php echo $teacher_salary['salary'];?>" id="salary" placeholder="salary">
+												<input type="text" class="form-control" name = "salary" value = "<?php echo $teacher_salary['salary'];?>" id="salary" placeholder="salary" readonly>
 											</div>
-											<div class="form-group">
-												<label for="created_at">Created_at</label>
-												<input type="text" class="form-control" name = "created_at" value = "<?php echo $teacher_salary['created_at'];?>" id="created_at" placeholder="created_at">
-											</div>																						
-											<button type="submit" name="submit_btn" value="update_tchr_salary" class="btn btn-primary btn-lg">Submit</button>
+											<div class="card-footer" style="text-align: center;">
+												<button type="submit" name="submit_btn" value="update_tchr_salary" class="btn btn-primary btn-lg">Submit</button>
+											</div>																				
 										</form>
 									</div>
 								</div>	
@@ -59,7 +63,25 @@
 			</div>	
 		</div>
 	</div>
-
+	<script type="text/javascript">
+		$(document).ready(function (){
+			$('#teacher_id').change(function (){
+				var teacher_id = $('#teacher_id').val();
+				$.ajax({
+					type: "POST",
+					url: "request.php",
+					data:{
+						id  : teacher_id,
+						fn  :'fetch_tchr_salary_by_id'
+					},
+					success: function (result){
+						var res = $.parseJSON(result);
+						$('#salary').val(res.salary)
+					}
+				});
+			})
+		})
+	</script>
 <?php require "footbar.php";?>
 </body>
 </html>

@@ -6,7 +6,6 @@
 	  $obj->is_logged_in();
 
 	  $teachers  = $obj->fetch_teacher();
-
 ?>
 <body>
 	<div class="wrapper">
@@ -32,27 +31,35 @@
 										</div>
 									</div>
 									<div class="card-body">
-										<div class="form-group">
-											<label for="teacher_id">Teacher Id</label>
-											<select name="teacher_id" id="teacher_id" class="form-control">
-												<option selected=" " disabled=" ">Please Select</option>
-												<?php foreach ($teachers as $key => $value) { ?>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="teacher_id">Teachers</label>
+													<select name="teacher_id" id="teacher_id" class="form-control">
+														<option selected=" " disabled=" ">Please Select</option>
+														<?php foreach ($teachers as $key => $value) { ?>
 
-												<option value="<?php echo $value['id']?>"><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>
-											<?php }?>
-												
-											</select>
-										</div>
-										<div class="form-group">
-											<label for="salary">Salary</label>
-											<input type="number" class="form-control" name = "salary" id="salary" placeholder=" Enter Salary">
+														<option value="<?php echo $value['id']?>"><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>
+													<?php }?>
+														
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="salary">Salary</label>
+													<input type="number" class="form-control" name = "salary" id="salary" placeholder=" Enter Salary">
+												</div>
+											</div>
 										</div>
 										<!-- <div class="form-group">
 											<label for="created_at">Created_at</label>
 											<input type="date" class="form-control" name = "created_at" id="created_at" placeholder=" created_at">
 										</div> -->
-										<div class="form-group">
-											<button type="submit" name="submit_btn" value="add_tchr_salary" class="btn btn-primary btn-lg">Submit</button>
+										<div class="card-footer" style="text-align: center;">
+											<div class="form-group">
+												<button type="submit" name="submit_btn" value="add_tchr_salary" class="btn btn-primary btn-lg">Submit</button>
+											</div>
 										</div>
 									</div>
 								</div>

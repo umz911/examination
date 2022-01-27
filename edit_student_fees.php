@@ -5,8 +5,6 @@
 	require ('db.php');
 	$obj->is_logged_in();
 	$students  = $obj->fetch_student();
-
-
 	
 	if (isset($_GET['id'])){
 		$id 	          = $_GET['id'];
@@ -37,24 +35,30 @@
 									</div>
 									<div class="card-body">
 										<form action="process.php" method="POST">
-											<div class="form-group">
-												
-												<label for="std_id">Student Name</label>
-											<select name="std_id" id="std_id" class="form-control">
-												<option selected=" " disabled=" ">Please Select</option>
-												<?php foreach ($students as $key => $value) { ?>
-												<option value="<?php echo $value['id']?>"><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>
-												<?php }?>
-											</select>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">		
+														<label for="std_id">Student Name</label>
+														<select name="std_id" id="std_id" class="form-control">
+															<?php foreach ($students as $key => $value) { ?>
+																
+															<option value="<?php echo $value['id']?>" <?php echo $selected = ($value['id'] == $student_fees['std_id']) ? 'selected': ''; ?>><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>
+															<?php }?>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="fees">Fees</label>
+														<input type="text" class="form-control" name = "fees" value = "<?php echo $student_fees['fees'];?>" id="fees" placeholder="fees" readonly>
+													</div>
+												</div>
 											</div>
-											<div class="form-group">
-												<label for="fees">Fees</label>
-												<input type="text" class="form-control" name = "fees" value = "<?php echo $student_fees['fees'];?>" id="fees" placeholder="fees" readonly>
+											<div class="card-footer" style="text-align: center;">
+												<div class="form-group">									
+													<button type="submit" name="submit_btn" value="update_std_fees" class="btn btn-primary btn-lg">Submit</button>
+												</div>
 											</div>
-
-											<div class="form-group">
-																					
-											<button type="submit" name="submit_btn" value="update_std_fees" class="btn btn-primary btn-lg">Submit</button>
 										</form>
 									</div>
 								</div>	

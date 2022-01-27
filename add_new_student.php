@@ -33,27 +33,27 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="fname">First Name</label>
-													<input type="name" class="form-control" name = "fname" id="fname" required>
+													<label for="fname">First Name <span class="text-danger">*</span> </label>
+													<input type="name" class="form-control" name = "fname" id="fname" required placeholder="First Name">
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="lname">Last Name</label>
-													<input type="name" class="form-control" name = "lname" id="lname" required>
+													<label for="lname">Last Name <span class="text-danger">*</span> </label>
+													<input type="name" class="form-control" name = "lname" id="lname"  required placeholder="Last Name">
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="date_of_admission">Date_of_Admission</label>
+													<label for="date_of_admission">Date of Admission <span class="text-danger">*</span> </label>
 													<input type="date" class="form-control" name = "date_of_admission" id="date_of_admission" required>
 												</div>												
 											</div>											
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="date_of_birth">Date_of_Birth</label>
+													<label for="date_of_birth">Date of Birth <span class="text-danger">*</span> </label>
 													<input type="date" class="form-control" name = "date_of_birth" id="fees" required>
 												</div>
 											</div>
@@ -61,9 +61,9 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="qualification">Qualification</label>
+													<label for="qualification">Qualification <span class="text-danger">*</span> </label>
 														<select name="qualification" id="qualification" class="form-control" required>
-															<option selected=" " disabled=" ">Please Select</option>
+															<option selected disabled value="">Please Select</option>
 															<?php foreach ($data as $key => $value) { ?>
 															<option value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
 															<?php }?>
@@ -73,9 +73,9 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="gender">Gender</label>
+													<label for="gender">Gender <span class="text-danger">*</span> </label>
 													<select type="number" class="form-control" name = "gender" id="gender" required>
-														<option selected=" " disabled=" ">Please Select</option>
+														<option selected disabled value="">Please Select</option>
 														<option value="1">Male</option>
 														<option value="2">Female</option>
 														<option value="3">Other</option>
@@ -87,21 +87,21 @@
 										<div class="row">
 											<div class="col-md-3">
 												<div class="form-group">
-													<label for="age">Age</label>
-													<input type="number" class="form-control" name = "age" min="2" id="age" required>
+													<label for="age">Age <span class="text-danger">*</span> </label>
+													<input type="number" class="form-control" name = "age" min="2" max="16" id="age" required placeholder="Enter Age">
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label for="fees">Fees</label>
-													<input type="number" class="form-control" name = "fees" min="1000" id="fees" required>
+													<label for="fees">Fees <span class="text-danger">*</span> </label>
+													<input type="number" class="form-control" name = "fees" min="1000" id="fees" required placeholder="Enter Fees">
 												</div>												
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label for="martial_status">Martial Status</label>
+													<label for="martial_status">Martial Status <span class="text-danger">*</span> </label>
 													<select type="name" class="form-control" name = "martial_status" id="martial_status" required>
-														<option selected=" " disabled=" ">Please Select</option>
+														<option selected disabled value="">Please Select</option>
 														<option value="1">Single</option>
 														<option value="2">Married</option>
 														<option value="3">Divorced</option>
@@ -111,16 +111,16 @@
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label for="phone_no">Phone Number</label>
-													<input type="tel" class="form-control" name = "phone_no" id="phone_no" required>
+													<label for="phone_no">Phone Number <span class="text-danger">*</span> </label>
+													<input type="tel" class="form-control" name = "phone_no" id="phone_no" pattern=".{11}"  required placeholder="Enter Number">
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group">
-													<label for="address">Address</label>
-													<textarea class="form-control" name = "address" id="address" placeholder="address" style="resize: none;" required></textarea>
+													<label for="address">Address <span class="text-danger">*</span> </label>
+													<textarea class="form-control" name = "address" id="address" placeholder="Address" style="resize: none;"  required maxlength="50"></textarea>
 													<!-- <input type="textarea" class="form-control" name = "address" id="address" placeholder="address"> -->
 												</div>												
 											</div>											

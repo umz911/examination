@@ -34,21 +34,21 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="fname">First Name</label>
-												<input type="text" class="form-control" name = "fname" id="fname" required>
+												<label for="fname">First Name <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" name = "fname" id="fname" pattern=".{5,10}" required placeholder="First Name">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="lname">Last Name</label>
-												<input type="lname" class="form-control" name = "lname" id="lname" required>
+												<label for="lname">Last Name <span class="text-danger">*</span></label>
+												<input type="lname" class="form-control" name = "lname" id="lname" pattern=".{5,10}" required placeholder="Last Name">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="qualification">Qualification</label>
+												<label for="qualification">Qualification <span class="text-danger">*</span></label>
 													<select name="qualification" id="qualification" class="form-control" required>
 														<option selected=" " disabled=" ">Please Select</option>
 														<?php foreach ($data as $key => $value) { ?>
@@ -60,7 +60,7 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="gender">Gender</label>
+												<label for="gender">Gender <span class="text-danger">*</span></label>
 												<select type="number" class="form-control" name = "gender" id="gender" required>
 													<option selected=" " disabled=" ">Please Select</option>
 													<option value="0">Male</option>
@@ -73,8 +73,8 @@
 									<div class="row">
 										<div class="col-md-3">
 											<div class="form-group">
-												<label for="subject_id">Subject Id</label>
-													<select name="subject_id" id="subject_id" class="form-control" required>
+												<label for="subject_id">Subject Id <span class="text-danger">*</span></label>
+													<select name="subject_id" id="subject_id"  class="form-control" required>
 														<option selected=" " disabled=" ">Please Select</option>
 														<?php foreach ($sub as $key => $value) { ?>
 														<option value="<?php echo $value['subject_name']?>"><?php echo ucwords($value['subject_name'])?> </option>
@@ -84,28 +84,28 @@
 										</div>
 										<div class="col-md-3">
 											<div class="form-group">
-												<label for="salary">Salary</label>
-												<input type="number" min="10000" class="form-control" name = "salary" id="salary" required>
+												<label for="salary">Salary <span class="text-danger">*</span></label>
+												<input type="number" min="10000" class="form-control" name = "salary" id="salary" required placeholder="Enter Salary">
 											</div>
 										</div>										
 										<div class="col-md-3">
 											<div class="form-group">
-												<label for="class_id">Class Id</label>
-												<input type="number" min="1" class="form-control" name = "class_id" id="class_id" required>
+												<label for="class_id">Class Id <span class="text-danger">*</span></label>
+												<input type="number" min="1" class="form-control" name = "class_id" id="class_id" required placeholder="Enter Class">
 											</div>
 										</div>
 										<div class="col-md-3">
 											<div class="form-group">
-												<label for="phone_no">Phone Number</label>
-												<input type="tel:"  class="form-control" name = "phone_no" id="phone_no" required>
+												<label for="phone_no">Phone Number <span class="text-danger">*</span></label>
+												<input type="tel:"  class="form-control" name = "phone_no" id="phone_no" pattern=".{11}" required placeholder="Enter Number">
 											</div>
 										</div>										
 									</div>								
 									<div class="row">
 										<div class="col-md-12">
 											<div class="form-group">
-												<label for="address">Address</label>
-												<textarea type="text" class="form-control" name = "address" id="address" required></textarea>
+												<label for="address">Address <span class="text-danger">*</span></label>
+												<textarea type="text" class="form-control" name = "address" id="address" required placeholder="Address"></textarea>
 											</div>
 										</div>										
 									</div>
