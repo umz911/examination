@@ -117,7 +117,7 @@
 												</div>												
 												<div class="col-md-3">
 													<div class="form-group">
-														<label for="phone_no">Phone_no</label>
+														<label for="phone_no">Phone Number</label>
 														<input type="tel" class="form-control" name = "phone_no"  value = "<?php echo $teacher['phone_no'];?>" id="phone_no" placeholder="phone_no">
 													</div>													
 												</div>												
@@ -126,8 +126,10 @@
 											<div class="form-group">
 												<label for="address">Address</label>
 												<input type="text" class="form-control" name = "address"  value = "<?php echo $teacher['address'];?>" id="address" placeholder="address">
-											</div>																							
-											<button type="submit" name="submit_btn" value="update_teacher" class="btn btn-primary btn-lg">Submit</button>
+											</div>
+											<div class="card-footer" style="text-align: center;">
+												<button type="submit" name="submit_btn" value="update_teacher" class="btn btn-primary btn-lg">Submit</button>
+											</div>																						
 									</form>
 								</div>	
 							</div>

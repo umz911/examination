@@ -77,7 +77,7 @@
 
 																<option selected value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
 															<?php }else{ ?>
-																<option value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>S
+																<option value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
 															<?php }?>
 
 															<?php }?>
@@ -114,13 +114,14 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="age">Age</label>
-														<input type="age" class="form-control" name = "age"  value = "<?php echo $student['age'];?>" id="age" placeholder="age" required>
+														<input type="number"  class="form-control" name = "age" min="2" value = "<?php echo $student['age'];?>" id="age" placeholder="age" required>
+
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="fees">Fees</label>
-														<input type="text" class="form-control" name = "fees"  value = "<?php echo $student['fees'];?>" id="fees" placeholder="fees" required>
+														<input type="number" min="1000" class="form-control" name = "fees"  value = "<?php echo $student['fees'];?>" id="fees" placeholder="fees" required>
 													</div>
 												</div>
 												<div class="col-md-3">

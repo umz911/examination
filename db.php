@@ -164,6 +164,22 @@
 			return $data;
 		}
 
+		public function fetch_subjects(){
+			$query = "SELECT * FROM `subjects` ";
+			$res 	= $this->conn->query($query);
+			$i = 0;
+			$data = array();
+			while ($rows = $res->fetch_assoc()) {
+				foreach ($rows as $key => $value) {
+					$data[$i][$key] = $value;
+				}
+				$i++;
+			}
+			
+			return $data;
+		}
+
+
 		public function add_teacher($data){
 			extract($data);
 			$query  =  "INSERT INTO `teachers`(

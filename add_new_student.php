@@ -88,13 +88,13 @@
 											<div class="col-md-3">
 												<div class="form-group">
 													<label for="age">Age</label>
-													<input type="number" class="form-control" name = "age" id="age" required>
+													<input type="number" class="form-control" name = "age" min="2" id="age" required>
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label for="fees">Fees</label>
-													<input type="name" class="form-control" name = "fees" id="fees" required>
+													<input type="number" class="form-control" name = "fees" min="1000" id="fees" required>
 												</div>												
 											</div>
 											<div class="col-md-3">

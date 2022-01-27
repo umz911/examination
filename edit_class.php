@@ -29,7 +29,7 @@
 									<div class="card-header">
 										<div class="d-flex align-items-center">
 											<h4 class="card-title">Edit Class</h4>
-											<a href="students.php" class="btn btn-primary btn-round ml-auto"><i class="fas fa-chevron-left"></i></a>
+											<a href="classes.php" class="btn btn-primary btn-round ml-auto"><i class="fas fa-chevron-left"></i></a>
 										</div>
 									</div>
 									<div class="card-body">

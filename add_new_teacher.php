@@ -5,6 +5,7 @@
 	  require ('db.php');
 	  $obj->is_logged_in();
 	  $data  = $obj->fetch_qualifications();
+	  $sub  = $obj->fetch_subjects();
 ?>
 <body>
 	<div class="wrapper">
@@ -73,25 +74,30 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="subject_id">Subject Id</label>
-												<input type="number" class="form-control" name = "subject_id" id="subject_id" required>
+													<select name="subject_id" id="subject_id" class="form-control" required>
+														<option selected=" " disabled=" ">Please Select</option>
+														<?php foreach ($sub as $key => $value) { ?>
+														<option value="<?php echo $value['subject_name']?>"><?php echo ucwords($value['subject_name'])?> </option>
+														<?php }?>
+													</select>
 											</div>
 										</div>
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="salary">Salary</label>
-												<input type="number" class="form-control" name = "salary" id="salary" required>
+												<input type="number" min="10000" class="form-control" name = "salary" id="salary" required>
 											</div>
 										</div>										
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="class_id">Class Id</label>
-												<input type="number" class="form-control" name = "class_id" id="class_id" required>
+												<input type="number" min="1" class="form-control" name = "class_id" id="class_id" required>
 											</div>
 										</div>
 										<div class="col-md-3">
 											<div class="form-group">
-												<label for="phone_no">Phone_no</label>
-												<input type="tel:" class="form-control" name = "phone_no" id="phone_no" required>
+												<label for="phone_no">Phone Number</label>
+												<input type="tel:"  class="form-control" name = "phone_no" id="phone_no" required>
 											</div>
 										</div>										
 									</div>								
