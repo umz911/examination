@@ -38,7 +38,7 @@
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">		
-														<label for="std_id">Student Name</label>
+														<label for="std_id">Student Name <span class="text-danger">*</span></label>
 														<select name="std_id" id="std_id" class="form-control">
 															<?php foreach ($students as $key => $value) { ?>
 																
@@ -49,7 +49,7 @@
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="fees">Fees</label>
+														<label for="fees">Fees <span class="text-danger">*</span></label>
 														<input type="text" class="form-control" name = "fees" value = "<?php echo $student_fees['fees'];?>" id="fees" placeholder="fees" readonly>
 													</div>
 												</div>

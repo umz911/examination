@@ -34,9 +34,9 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="std_id">Students</label>
-													<select name="std_id" id="std_id" class="form-control">
-														<option selected=" " disabled=" ">Please Select</option>
+													<label for="std_id">Students <span class="text-danger">*</span></label>
+													<select name="std_id" id="std_id" class="form-control" required>
+														<option selected disabled value="">Please Select</option>
 														<?php foreach ($students as $key => $value) { ?>
 														<option value="<?php echo $value['id']?>"><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>
 														<?php }?>
@@ -45,8 +45,8 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="fees">Fees</label>
-													<input type="number" class="form-control" name = "fees" id="fees" placeholder=" Enter Fees" required>
+													<label for="fees">Fees <span class="text-danger">*</span></label>
+													<input type="number" class="form-control" name = "fees" id="fees" placeholder=" Enter Fees" required readonly>
 												</div>
 											</div>
 										</div>

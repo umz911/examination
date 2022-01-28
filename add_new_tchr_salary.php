@@ -34,7 +34,7 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="teacher_id">Teachers</label>
+													<label for="teacher_id">Teachers <span class="text-danger">*</span></label>
 													<select name="teacher_id" id="teacher_id" class="form-control">
 														<option selected=" " disabled=" ">Please Select</option>
 														<?php foreach ($teachers as $key => $value) { ?>
@@ -47,8 +47,8 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="salary">Salary</label>
-													<input type="number" class="form-control" name = "salary" id="salary" placeholder=" Enter Salary">
+													<label for="salary">Salary <span class="text-danger">*</span></label>
+													<input type="number" class="form-control" name = "salary" id="salary" placeholder=" Enter salary " readonly>
 												</div>
 											</div>
 										</div>

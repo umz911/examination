@@ -44,7 +44,7 @@
 													<?php foreach ($classes as $key => $value) { ?>
 													<tr>
 														<td><?php echo $value['id']?></td>
-														<td><?php echo $value['cls_name']?></td>
+														<td><?php echo ucfirst($value['cls_name'])?></td>
 														<td>
 															<a href="view_class.php?id=<?php echo $value['id']?> "class="btn btn-link"><i class="fa fa-eye"></i></a>
 															<a href="edit_class.php?id=<?php echo $value['id']?>"class="btn btn-link btn-primary btn-lg"><i class="fa fa-edit"></i></a>

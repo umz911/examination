@@ -37,11 +37,13 @@
 											<div class="form-group">
 												<input type="hidden"  name = "id" value = "<?php echo $classes['id'];?>">
 
-												<label for="cls_name">Class Name</label>
+												<label for="cls_name">Class name</label>
 												<input type="text" class="form-control" name = "cls_name" value = "<?php echo $classes['cls_name'];?>" id="cls_name" placeholder="Class Name">
 											</div>
-											<button type="submit" name="submit_btn" value="update_student" class="btn btn-primary btn-lg">Submit</button>
 										</form>
+									</div>
+									<div  class="card-footer" style="text-align: center;">
+										<button type="submit" name="submit_btn" value="update_class" class="btn btn-primary btn-lg">Submit</button>
 									</div>
 								</div>	
 							</div>

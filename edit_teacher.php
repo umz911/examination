@@ -4,7 +4,10 @@
 	require "head.php";
 	require ('db.php');
 	$obj->is_logged_in();
-	$data  = $obj->fetch_qualifications();
+	$data   = $obj->fetch_qualifications();
+	$sub    = $obj->fetch_subjects();
+	$class  = $obj->fetch_class();
+
 
 	
 	if (isset($_GET['id'])){
@@ -40,14 +43,14 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<input type="hidden"  name = "id" value = "<?php echo $teacher['id'];?>">
-														<label for="fname">First Name <span class="text-danger">*</span> </label>
-														<input type="text" class="form-control" name = "fname" value = "<?php echo $teacher['fname'];?>" id="fname" placeholder="First Name">
+														<label for="fname">First name <span class="text-danger">*</span> </label>
+														<input type="text" class="form-control" name = "fname" value = "<?php echo ucwords($teacher['fname']);?>" id="fname" placeholder="First name" required>
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="lname">Last Name <span class="text-danger">*</span></label>
-														<input type="lname" class="form-control" name = "lname"  value = "<?php echo $teacher['lname'];?>" id="lname" placeholder="Email Address">
+														<label for="lname">Last name <span class="text-danger">*</span></label>
+														<input type="text" class="form-control" name = "lname"  value = "<?php echo ucwords($teacher['lname']);?>" id="lname" placeholder="Last name" required>
 													</div>												
 												</div>												
 											</div>
@@ -55,11 +58,10 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="qualification">Qualification <span class="text-danger">*</span></label>
-														<select name="qualification" id="qualification" class="form-control">
-																<!-- <option>Please Select</option> -->
+														<select name="qualification" id="qualification" class="form-control" required>
+																<option selected disabled value="">--- Please select ---</option>					
 																<?php foreach ($data as $key => $value) { ?>
-
-																<?php if($value['name'] == $teachers['qualification']){?>
+																<?php if($value['name'] == $teacher['qualification']){?>
 
 																	<option selected value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
 																<?php }else{ ?>
@@ -74,8 +76,7 @@
 													<div class="form-group">
 														<label for="gender">Gender <span class="text-danger">*</span> </label>
 														<select type="number" class="form-control" name = "gender" id="gender" required>
-
-															<!-- <option>Please Select</option> -->
+															<option selected disabled value="">--- Please select ---</option>
 															<?php if($teachers['gender'] == 0){?>
 																
 																<option value="0" selected>Male</option>
@@ -99,33 +100,53 @@
 											<div class="row">
 												<div class="col-md-3">
 													<div class="form-group">
-														<label for="subject_id">Subject Id <span class="text-danger">*</span> </label>
-														<input type="number" class="form-control" name = "subject_id"  value = "<?php echo $teacher['subject_id'];?>" id="subject_id" placeholder="subject_id">
+														<label for="subject">Subject <span class="text-danger">*</span> </label>
+														<select name="subject" id="subject"  class="form-control" required>
+															<option selected disabled value="">--- Please select ---</option>
+															<?php foreach ($sub as $key => $value) { ?>
+															<?php if($value['subject_name'] == $teacher['subject']){?>
+																<option selected value="<?php echo $value['subject_name']?>"><?php echo ucwords($value['subject_name'])?> </option>
+															<?php }else{ ?>
+																<option value="<?php echo $value['subject_name']?>"><?php echo ucwords($value['subject_name'])?> </option>
+															<?php }?>
+
+															<?php }?>
+														</select>
 													</div>													
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="salary">Salary <span class="text-danger">*</span></label>
-														<input type="number" class="form-control" name = "salary"  value = "<?php echo $teacher['salary'];?>" id="salary" placeholder="salary">
+														<input type="number" class="form-control" name = "salary"  value = "<?php echo $teacher['salary'];?>" id="salary" placeholder="Enter salary" required min="15000" >
 													</div>													
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<label for="class_id">Class Id <span class="text-danger">*</span> </label>
-														<input type="number" class="form-control" name = "class_id"  value = "<?php echo $teacher['class_id'];?>" id="class_id" placeholder="class_id">
+														<label for="class_name">Class<span class="text-danger">*</span> </label>
+														<select name="class_name" id="class_name"  class="form-control" required>
+															<option selected disabled value="">--- Please select ---</option>
+															<?php foreach ($class as $key => $value) { ?>
+															<?php if($value['cls_name'] == $teacher['class_name']){?>
+																<option selected value="<?php echo $value['cls_name']?>"><?php echo ucwords($value['cls_name'])?> </option>
+															<?php }else{ ?>
+																<option value="<?php echo $value['cls_name']?>"><?php echo ucwords($value['cls_name'])?> </option>
+															<?php }?>
+
+															<?php }?>
+														</select>
 													</div>													
 												</div>												
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="phone_no">Phone Number <span class="text-danger">*</span></label>
-														<input type="tel" class="form-control" name = "phone_no"  value = "<?php echo $teacher['phone_no'];?>" id="phone_no" placeholder="phone_no">
+														<input type="tel" class="form-control" name = "phone_no"  value = "<?php echo $teacher['phone_no'];?>" id="phone_no" pattern=".{11}" placeholder="Enter phone number">
 													</div>													
 												</div>												
 											</div>												
 
 											<div class="form-group">
 												<label for="address">Address <span class="text-danger">*</span> </label>
-												<textarea class="form-control"><?php echo $teacher['address'];?></textarea>
+												<textarea class="form-control" name = "address" id="address"><?php echo $teacher['address'];?></textarea>
 											</div>
 											<div class="card-footer" style="text-align: center;">
 												<button type="submit" name="submit_btn" value="update_teacher" class="btn btn-primary btn-lg">Submit</button>

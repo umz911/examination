@@ -22,9 +22,11 @@
 			session_destroy();
 			header("location:login.php");
 		}
-		public function login($data){			
+		public function login($data){	
+
 			extract($data);
 			$query	= "SELECT * FROM `users` where `username` = '$username' and `password` = '$password' ";
+			// $this->debug($query)		;
 			$res 	= $this->conn->query($query);
 
 			if ($res->num_rows>0) {	
@@ -190,8 +192,8 @@
 												`gender`,
 												`phone_no`,
 												`address`,
-												`subject_id`,
-												`class_id`,
+												`subject`,
+												`class_name`,
 												`salary`
 											   ) 
 									  VALUES (
@@ -202,8 +204,8 @@
 												'$gender',
 												'$phone_no',
 												'$address',
-												'$subject_id',
-												'$class_id',
+												'$subject',
+												'$class_name',
 												'$salary'
 											   )";
 			$res 	= $this->conn->query($query);
@@ -211,7 +213,7 @@
 		}
 		public function update_teacher($data){	
 			extract($data);
-			$query	= "UPDATE `teachers` SET `fname` = '$fname',`lname` = '$lname',`age`='$age',`qualification`='$qualification',`gender`='$gender',`phone_no`='$phone_no',`age`='$age',`address`='$address',`subject_id`='$subject_id',`class_id`='$class_id',`salary`='$salary' WHERE `id` = '$id' ";
+			$query	= "UPDATE `teachers` SET `fname` = '$fname',`lname` = '$lname',`age`='$age',`qualification`='$qualification',`gender`='$gender',`phone_no`='$phone_no',`address`='$address',`subject`='$subject',`class_name`='$class_name',`salary`='$salary' WHERE `id` = '$id' ";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
@@ -395,7 +397,7 @@
 		}
 		public function update_std_fees($data){	
 			extract($data);
-			$query	= "UPDATE `std_fees` SET `std_id` = '$std_id',`fees` = '$fees' WHERE `id` = '$id' ";
+			$query	= "UPDATE `std_fees` SET `std_id` = '$std_id',`fees` = '$fees' ";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}

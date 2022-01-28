@@ -39,29 +39,28 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<input type="hidden"  name = "id" value = "<?php echo $student['id'];?>">
-
-														<label for="fname">First Name <span class="text-danger">*</span></label>
-														<input type="text" class="form-control" name = "fname" value = "<?php echo $student['fname'];?>" id="fname" placeholder="First Name" pattern=".{5,10}" required>
+														<label for="fname">First name <span class="text-danger">*</span></label>
+														<input type="text" class="form-control" name = "fname" value = "<?php echo ucwords($student['fname']);?>" id="fname" placeholder="First name" required>
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="lname">Last Name <span class="text-danger">*</span> </label>
-														<input type="lname" class="form-control" name = "lname"  value = "<?php echo $student['lname'];?>" id="lname" pattern=".{5,10}" required>
+														<label for="lname">Last name <span class="text-danger">*</span> </label>
+														<input type="text" class="form-control" name = "lname"  value = "<?php echo ucwords($student['lname']);?>" id="lname" placeholder="Last name" required>
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="date_of_admission">Date of Admission <span class="text-danger">*</span></label>
-														<input type="date" class="form-control" name = "date_of_admission"  value = "<?php echo $student['date_of_admission'];?>" id="date_of_admission" placeholder="date_of_admission" required>
+														<label for="date_of_admission">Date of admission <span class="text-danger">*</span></label>
+														<input type="date" class="form-control" name = "date_of_admission"  value = "<?php echo $student['date_of_admission'];?>" id="date_of_admission" placeholder="Date of admission" required>
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="date_of_birth">Date of Birth <span class="text-danger">*</span> </label>
-														<input type="date" class="form-control" name = "date_of_birth"  value = "<?php echo $student['date_of_birth'];?>" id="date_of_birth" placeholder="date_of_birth" required>
+														<label for="date_of_birth">Date of birth <span class="text-danger">*</span> </label>
+														<input type="date" class="form-control" name = "date_of_birth"  value = "<?php echo $student['date_of_birth'];?>" id="date_of_birth" placeholder="Date of birth" required>
 													</div>
 												</div>
 											</div>
@@ -70,11 +69,10 @@
 													<div class="form-group">
 														<label for="qualification">Qualification <span class="text-danger">*</span> </label>
 														<select name="qualification" id="qualification" class="form-control" required>
-															<!-- <option>Please Select</option> -->
+															<option selected disabled value="">--- Please select ---</option>
 															<?php foreach ($data as $key => $value) { ?>
 
 															<?php if($value['name'] == $student['qualification']){?>
-
 																<option selected value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
 															<?php }else{ ?>
 																<option value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
@@ -88,8 +86,7 @@
 													<div class="form-group">
 														<label for="gender">Gender <span class="text-danger">*</span> </label>
 														<select type="number" class="form-control" name = "gender" id="gender" required>
-
-															<!-- <option>Please Select</option> -->
+															<option selected disabled value="">---Please select---</option>
 															<?php if($student['gender'] == 1){?>
 																
 																<option value="1" selected>Male</option>
@@ -114,20 +111,20 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="age">Age <span class="text-danger">*</span> </label>
-														<input type="number"  class="form-control" name = "age" min="2" value = "<?php echo $student['age'];?>" id="age" placeholder="age" required>
+														<input type="number"  class="form-control" name = "age" min="2" value = "<?php echo $student['age'];?>" id="age" placeholder="Enter age" required>
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="fees">Fees <span class="text-danger">*</span> </label>
-														<input type="text" min="1000" class="form-control" name = "fees"  value = "<?php echo $student['fees'];?>" id="fees" placeholder="fees" required>
+														<input type="number" min="1000" class="form-control" name = "fees"  value = "<?php echo $student['fees'];?>" id="fees" placeholder="Enter fees" required>
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="martial_status">Martial Status <span class="text-danger">*</span> </label>
 														<select type="number" class="form-control" name = "martial_status" id="martial_status" required>
-															<!-- <option>Please Select</option> -->
+															<option selected disabled value="">--- Please select ---</option>
 															<?php if($student['martial_status'] == 1){?>
 																
 																<option value="1" selected>Single</option>
@@ -150,7 +147,7 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="phone_no">Phone Number <span class="text-danger">*</span> </label>
-														<input type="tel" class="form-control" name = "phone_no" pattern=".{11}"  value = "<?php echo $student['phone_no'];?>" id="phone_no" placeholder="phone_no" required>
+														<input type="tel" class="form-control" name = "phone_no" pattern=".{11}"  value = "<?php echo $student['phone_no'];?>" id="phone_no" placeholder="Enter phone number" required>
 													</div>
 												</div>						
 											</div>
@@ -158,7 +155,7 @@
 												<div class="col-md-12">
 													<div class="form-group">
 														<label for="address">Address <span class="text-danger">*</span> </label>
-														<textarea class="form-control" ><?php echo ucwords($student['address']);?></textarea>
+														<textarea class="form-control" name = "address" id="address" placeholder="Address"><?php echo ucwords($student['address']);?></textarea>
 													</div>
 												</div>
 											</div>

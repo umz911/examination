@@ -38,7 +38,7 @@
 									<div class="card-body">
 										<form action="process.php" method="POST">
 											<div class="form-group">	
-												<label for="teacher_id">Teacher Name</label>
+												<label for="teacher_id">Teacher Name <span class="text-danger">*</span></label>
 												<select name="teacher_id" id="teacher_id" class="form-control">
 													<?php foreach ($teachers as $key => $value) { ?>
 														
@@ -47,7 +47,7 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<label for="salary">Salary</label>
+												<label for="salary">Salary <span class="text-danger">*</span></label>
 												<input type="text" class="form-control" name = "salary" value = "<?php echo $teacher_salary['salary'];?>" id="salary" placeholder="salary" readonly>
 											</div>
 											<div class="card-footer" style="text-align: center;">

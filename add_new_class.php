@@ -30,12 +30,14 @@
 									</div>
 									<div class="card-body">
 										<div class="form-group">
-											<label for="cls_name">Class Name</label>
-											<input type="name" class="form-control" name = "cls_name" id="cls_name" placeholder=" cls_name">
+											<label for="cls_name">Class name</label>
+											<input type="name" class="form-control" name = "cls_name" id="cls_name" placeholder=" Enter class" required>
 										</div>
+									</div>
+									<div class="card-footer" style="text-align: center;">
 										<div class="form-group">
 											<button type="submit" name="submit_btn" value="add_class" class="btn btn-primary btn-lg">Submit</button>
-										</div>
+										</div>										
 									</div>
 								</div>
 							</div>
