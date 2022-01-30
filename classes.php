@@ -29,15 +29,14 @@
 											<a href="add_new_class.php" class="btn btn-primary btn-round ml-auto"><i class="fa fa-plus"></i> Add New Class </a>
 										</div>
 									</div>
-									<div class="card-body">
-									
+									<div class="card-body">		
 										<div class="table-responsive">
 											<table id="add-row" class="display table table-striped table-hover" >
 												<thead>
 													<tr>
 														<th>Id</th>
 														<th>Class Name</th>
-														<th style="width: 20=%">Action</th>
+														<th style="width: 10%">Action</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -46,9 +45,11 @@
 														<td><?php echo $value['id']?></td>
 														<td><?php echo ucfirst($value['cls_name'])?></td>
 														<td>
+														<div class="form-button-action"> 
 															<a href="view_class.php?id=<?php echo $value['id']?> "class="btn btn-link"><i class="fa fa-eye"></i></a>
 															<a href="edit_class.php?id=<?php echo $value['id']?>"class="btn btn-link btn-primary btn-lg"><i class="fa fa-edit"></i></a>
 															<a href="process.php?id=<?php echo $value['id']?>&submit_dlt=delete_class"class="btn btn-link btn-danger"><i class="fas fa-trash"></i></a>
+														</div>	
 														</td>
 													</tr>
 												<?php }?>

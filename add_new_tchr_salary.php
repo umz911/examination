@@ -36,7 +36,8 @@
 												<div class="form-group">
 													<label for="teacher_id">Teachers <span class="text-danger">*</span></label>
 													<select name="teacher_id" id="teacher_id" class="form-control">
-														<option selected=" " disabled=" ">Please Select</option>
+													<option selected disabled value="">--- Please select ---</option>
+
 														<?php foreach ($teachers as $key => $value) { ?>
 
 														<option value="<?php echo $value['id']?>"><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>

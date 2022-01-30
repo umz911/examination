@@ -38,7 +38,7 @@
 												<input type="hidden"  name = "id" value = "<?php echo $classes['id'];?>">
 
 												<label for="cls_name">Class name</label>
-												<input type="text" class="form-control" name = "cls_name" value = "<?php echo $classes['cls_name'];?>" id="cls_name" placeholder="Class Name">
+												<input type="text" class="form-control" name = "cls_name" value = "<?php echo $classes['cls_name'];?>" id="cls_name" placeholder="Class Name" required  minlength="6" maxlength="8" size="10">
 											</div>
 										</form>
 									</div>

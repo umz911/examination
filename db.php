@@ -48,10 +48,10 @@
 												`fees`,
 												`date_of_birth`,
 												`date_of_admission`,
-												`qualification`,
+												`qualification_id`,
 												`age`,
-												`gender`,
-												`martial_status`,
+												`gender_id`,
+												`martial_status_id`,
 												`phone_no`,
 												`address`
 											  ) 
@@ -61,10 +61,10 @@
 												'$fees',
 												'$date_of_birth',
 												'$date_of_admission',
-												'$qualification',
+												'$qualification_id',
 												'$age',
-												'$gender',
-												'$martial_status',
+												'$gender_id',
+												'$martial_status_id',
 												'$phone_no',
 												'$address'
 											 )";
@@ -79,10 +79,10 @@
 												`fees`='$fees',
 												`date_of_birth`='$date_of_birth',
 												`date_of_admission`='$date_of_admission',
-												`qualification`='$qualification',
+												`qualification_id`='$qualification_id',
 												`age`='$age',
-												`gender`='$gender',
-												`martial_status`='$martial_status',
+												`gender_id`='$gender_id',
+												`martial_status_id`='$martial_status_id',
 												`phone_no`='$phone_no',
 												`address`='$address' 
 										WHERE `id` = '$id' ";
@@ -137,7 +137,22 @@
 			return $data;
 		}	
 		public function fetch_student(){
-			$query = "SELECT * FROM `students` ";
+			$query = "SELECT 	`students`.`id`,
+							    `students`.`fname`,
+							    `students`.`lname`,
+
+							    `students`.`age`,
+
+							    `qualifications`.`name` as 	`qualification`,
+							    `gender`.`name` as 	`gender`
+						   
+		 		  FROM 	   		`students`
+		 		  LEFT JOIN 	`qualifications`
+		 		  ON 		   	`students`.`qualification_id` = `qualifications`.`id` 
+
+		 		  LEFT JOIN 	`gender`
+		 		  ON 		   	`students`.`gender_id` = `gender`.`id` ";
+
 			$res 	= $this->conn->query($query);
 			$i = 0;
 			$data = array();
@@ -193,7 +208,7 @@
 												`phone_no`,
 												`address`,
 												`subject`,
-												`class_name`,
+												`class_id`,
 												`salary`
 											   ) 
 									  VALUES (
@@ -205,7 +220,7 @@
 												'$phone_no',
 												'$address',
 												'$subject',
-												'$class_name',
+												'$class_id',
 												'$salary'
 											   )";
 			$res 	= $this->conn->query($query);
@@ -213,7 +228,7 @@
 		}
 		public function update_teacher($data){	
 			extract($data);
-			$query	= "UPDATE `teachers` SET `fname` = '$fname',`lname` = '$lname',`age`='$age',`qualification`='$qualification',`gender`='$gender',`phone_no`='$phone_no',`address`='$address',`subject`='$subject',`class_name`='$class_name',`salary`='$salary' WHERE `id` = '$id' ";
+			$query	= "UPDATE `teachers` SET `fname` = '$fname',`lname` = '$lname',`age`='$age',`qualification`='$qualification',`gender`='$gender',`phone_no`='$phone_no',`address`='$address',`subject`='$subject',`class_id`='$class_id',`salary`='$salary' WHERE `id` = '$id' ";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}

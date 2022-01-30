@@ -67,15 +67,15 @@
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="qualification">Qualification <span class="text-danger">*</span> </label>
-														<select name="qualification" id="qualification" class="form-control" required>
+														<label for="qualification_id">Qualification <span class="text-danger">*</span> </label>
+														<select name="qualification_id" id="qualification_id" class="form-control" required>
 															<option selected disabled value="">--- Please select ---</option>
 															<?php foreach ($data as $key => $value) { ?>
 
-															<?php if($value['name'] == $student['qualification']){?>
-																<option selected value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
+															<?php if($value['id'] == $student['qualification_id']){?>
+																<option selected value="<?php echo $value['id']?>"><?php echo ucwords($value['name'])?> </option>
 															<?php }else{ ?>
-																<option value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
+																<option value="<?php echo $value['id']?>"><?php echo ucwords($value['name'])?> </option>
 															<?php }?>
 
 															<?php }?>
@@ -85,15 +85,15 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="gender">Gender <span class="text-danger">*</span> </label>
-														<select type="number" class="form-control" name = "gender" id="gender" required>
+														<select type="number" class="form-control" name = "gender_id" id="gender_id" required>
 															<option selected disabled value="">---Please select---</option>
-															<?php if($student['gender'] == 1){?>
+															<?php if($student['gender_id'] == 1){?>
 																
 																<option value="1" selected>Male</option>
 																<option value="2">Female</option>
 																<option value="3">Other</option>
 
-															<?php }else  if($student['gender'] == 2){?>
+															<?php }else  if($student['gender_id'] == 2){?>
 																<option value="1" >Male</option>
 																<option value="2"selected>Female</option>
 																<option value="3">Other</option>
@@ -123,15 +123,15 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="martial_status">Martial Status <span class="text-danger">*</span> </label>
-														<select type="number" class="form-control" name = "martial_status" id="martial_status" required>
+														<select type="number" class="form-control" name = "martial_status_id" id="martial_status_id" required style="padding: 0px 18.5px;">
 															<option selected disabled value="">--- Please select ---</option>
-															<?php if($student['martial_status'] == 1){?>
+															<?php if($student['martial_status_id'] == 1){?>
 																
 																<option value="1" selected>Single</option>
 																<option value="2">Married</option>
 																<option value="3">Divorced</option>
 
-															<?php }else  if($student['martial_status'] == 2){?>
+															<?php }else  if($student['martial_status_id'] == 2){?>
 																<option value="1" >Single</option>
 																<option value="2"selected>Married</option>
 																<option value="3">Divorced</option>
@@ -147,7 +147,7 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="phone_no">Phone Number <span class="text-danger">*</span> </label>
-														<input type="tel" class="form-control" name = "phone_no" pattern=".{11}"  value = "<?php echo $student['phone_no'];?>" id="phone_no" placeholder="Enter phone number" required>
+														<input type="tel" class="form-control" min="2" name = "phone_no" pattern=".{11}"  value = "<?php echo $student['phone_no'];?>" id="phone_no" placeholder="+92" required>
 													</div>
 												</div>						
 											</div>
@@ -155,7 +155,7 @@
 												<div class="col-md-12">
 													<div class="form-group">
 														<label for="address">Address <span class="text-danger">*</span> </label>
-														<textarea class="form-control" name = "address" id="address" placeholder="Address"><?php echo ucwords($student['address']);?></textarea>
+														<textarea class="form-control" name = "address" id="address" placeholder="Address" required maxlength="50"><?php echo ucwords($student['address']);?></textarea>
 													</div>
 												</div>
 											</div>

@@ -78,7 +78,7 @@
 													<select name="subject" id="subject"  class="form-control" required>
 														<option selected disabled value="">--- Please select ---</option>
 														<?php foreach ($sub as $key => $value) { ?>
-														<option value="<?php echo $value['subject_name']?>"><?php echo ucwords($value['subject_name'])?> </option>
+														<option value="<?php echo $value['id']?>"><?php echo ucwords($value['subject_name'])?> </option>
 														<?php }?>
 													</select>
 											</div>
@@ -91,8 +91,8 @@
 										</div>										
 										<div class="col-md-3">
 											<div class="form-group">
-												<label for="class_name">Class <span class="text-danger">*</span></label>
-														<select class="form-control" name = "class_name" id="class_name" required>
+												<label for="class_id">Class <span class="text-danger">*</span></label>
+														<select class="form-control" name = "class_id" id="class_id" required>
 														<option selected disabled value="">--- Please select ---</option>
 														<?php foreach ($class as $key => $value) { ?>
 														<option value="<?php echo $value['cls_name']?>"><?php echo ucwords($value['cls_name'])?> </option>
@@ -103,7 +103,7 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="phone_no">Phone number <span class="text-danger">*</span></label>
-												<input type="tel:"  class="form-control" name = "phone_no" id="phone_no" pattern=".{11}" required placeholder="Enter phone number">
+												<input type="tel:"  class="form-control" name = "phone_no" id="phone_no" pattern=".{11}" required placeholder="+92">
 											</div>
 										</div>										
 									</div>								

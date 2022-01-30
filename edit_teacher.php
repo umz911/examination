@@ -122,11 +122,11 @@
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<label for="class_name">Class<span class="text-danger">*</span> </label>
-														<select name="class_name" id="class_name"  class="form-control" required>
+														<label for="class_id">Class<span class="text-danger">*</span> </label>
+														<select name="class_id" id="class_id"  class="form-control" required>
 															<option selected disabled value="">--- Please select ---</option>
 															<?php foreach ($class as $key => $value) { ?>
-															<?php if($value['cls_name'] == $teacher['class_name']){?>
+															<?php if($value['cls_name'] == $teacher['class_id']){?>
 																<option selected value="<?php echo $value['cls_name']?>"><?php echo ucwords($value['cls_name'])?> </option>
 															<?php }else{ ?>
 																<option value="<?php echo $value['cls_name']?>"><?php echo ucwords($value['cls_name'])?> </option>
@@ -139,14 +139,14 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="phone_no">Phone Number <span class="text-danger">*</span></label>
-														<input type="tel" class="form-control" name = "phone_no"  value = "<?php echo $teacher['phone_no'];?>" id="phone_no" pattern=".{11}" placeholder="Enter phone number">
+														<input type="tel" class="form-control" name = "phone_no"  value = "<?php echo $teacher['phone_no'];?>" id="phone_no" pattern=".{11}" placeholder="+92">
 													</div>													
 												</div>												
 											</div>												
 
 											<div class="form-group">
 												<label for="address">Address <span class="text-danger">*</span> </label>
-												<textarea class="form-control" name = "address" id="address"><?php echo $teacher['address'];?></textarea>
+												<textarea class="form-control" name = "address" id="address" required maxlength="50"><?php echo $teacher['address'];?></textarea>
 											</div>
 											<div class="card-footer" style="text-align: center;">
 												<button type="submit" name="submit_btn" value="update_teacher" class="btn btn-primary btn-lg">Submit</button>

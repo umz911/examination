@@ -61,11 +61,11 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="qualification">Qualification <span class="text-danger">*</span> </label>
-														<select name="qualification" id="qualification" class="form-control" required>
+													<label for="qualification_id">Qualification <span class="text-danger">*</span> </label>
+														<select name="qualification_id" id="qualification_id" class="form-control" required>
 															<option selected disabled value="">--- Please select ---</option>
 															<?php foreach ($data as $key => $value) { ?>
-															<option value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
+															<option value="<?php echo $value['id']?>"><?php echo ucwords($value['name'])?> </option>
 															<?php }?>
 														</select>
 											<!-- 		<input type="name" class="form-control" name = "qualification" id="qualification" placeholder="qualification"> -->
@@ -73,8 +73,8 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label for="gender">Gender <span class="text-danger">*</span> </label>
-													<select type="number" class="form-control" name = "gender" id="gender" required>
+													<label for="gender_id">Gender <span class="text-danger">*</span> </label>
+													<select type="number" class="form-control" name = "gender_id" id="gender_id" required>
 														<option selected disabled value="">--- Please select ---</option>
 														<option value="1">Male</option>
 														<option value="2">Female</option>
@@ -99,8 +99,8 @@
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label for="martial_status">Martial status <span class="text-danger">*</span> </label>
-													<select type="number" class="form-control" name = "martial_status" id="martial_status" required>
+													<label for="martial_status_id">Martial status <span class="text-danger">*</span> </label>
+													<select type="number" class="form-control" name = "martial_status_id" id="martial_status_id" required style="padding: 0px 18.5px;">
 														<option selected disabled value="">--- Please select ---</option>
 														<option value="1">Single</option>
 														<option value="2">Married</option>
@@ -112,7 +112,7 @@
 											<div class="col-md-3">
 												<div class="form-group">
 													<label for="phone_no">Phone number <span class="text-danger">*</span> </label>
-													<input type="tel" class="form-control" name = "phone_no" id="phone_no" pattern=".{11}"  required placeholder="Enter phone number">
+													<input type="tel" class="form-control" name = "phone_no" id="phone_no" pattern=".{11}"  required placeholder="+92">
 												</div>
 											</div>
 										</div>
