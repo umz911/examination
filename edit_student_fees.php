@@ -9,6 +9,10 @@
 	if (isset($_GET['id'])){
 		$id 	          = $_GET['id'];
 		$student_fees     = $obj->get_std_fees($id);
+		if(!($student_fees)){
+			header("location:student_fees.php");
+		}			
+		
 	}
 ?>
 <body>
@@ -40,6 +44,7 @@
 													<div class="form-group">		
 														<label for="std_id">Student Name <span class="text-danger">*</span></label>
 														<select name="std_id" id="std_id" class="form-control">
+															<option  disabled value="">--- Please select ---</option>
 															<?php foreach ($students as $key => $value) { ?>
 																
 															<option value="<?php echo $value['id']?>" <?php echo $selected = ($value['id'] == $student_fees['std_id']) ? 'selected': ''; ?>><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>

@@ -50,10 +50,10 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for="qualification">Qualification <span class="text-danger">*</span></label>
-													<select name="qualification" id="qualification" class="form-control" required>
+													<select name="qualification_id" id="qualification_id" class="form-control" required>
 														<option selected disabled value="">--- Please select ---</option>
 														<?php foreach ($data as $key => $value) { ?>
-														<option value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
+														<option value="<?php echo $value['id']?>"><?php echo ucwords($value['name'])?> </option>
 														<?php }?>
 													</select>
 										<!-- 		<input type="name" class="form-control" name = "qualification" id="qualification" placeholder="qualification"> -->
@@ -62,11 +62,11 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for="gender">Gender <span class="text-danger">*</span></label>
-												<select type="number" class="form-control" name = "gender" id="gender" required>
+												<select type="number" class="form-control" name = "gender_id" id="gender_id" required>
 													<option selected disabled value="">--- Please select ---</option>
-													<option value="0">Male</option>
-													<option value="1">Female</option>
-													<option value="2">Other</option>
+													<option value="1">Male</option>
+													<option value="2">Female</option>
+													<option value="3">Other</option>
 												</select>
 											</div>
 										</div>
@@ -75,7 +75,7 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="subject">Subject <span class="text-danger">*</span></label>
-													<select name="subject" id="subject"  class="form-control" required>
+													<select name="subject_id" id="subject_id"  class="form-control" required>
 														<option selected disabled value="">--- Please select ---</option>
 														<?php foreach ($sub as $key => $value) { ?>
 														<option value="<?php echo $value['id']?>"><?php echo ucwords($value['subject_name'])?> </option>
@@ -92,10 +92,10 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="class_id">Class <span class="text-danger">*</span></label>
-														<select class="form-control" name = "class_id" id="class_id" required>
+														<select class="form-control" name = "class_id" id="class_id" required style="padding: 0px 14px;">
 														<option selected disabled value="">--- Please select ---</option>
 														<?php foreach ($class as $key => $value) { ?>
-														<option value="<?php echo $value['cls_name']?>"><?php echo ucwords($value['cls_name'])?> </option>
+														<option value="<?php echo $value['id']?>"><?php echo ucwords($value['cls_name'])?> </option>
 														<?php }?>
 													</select>
 											</div>
@@ -103,7 +103,7 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="phone_no">Phone number <span class="text-danger">*</span></label>
-												<input type="tel:"  class="form-control" name = "phone_no" id="phone_no" pattern=".{11}" required placeholder="+92">
+												<input type="tel"  class="form-control" name = "phone_no" id="phone_no" pattern="[0-9]{11}" required placeholder="+92">
 											</div>
 										</div>										
 									</div>								

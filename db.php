@@ -42,6 +42,13 @@
 		}
 		public function add_student($data){
 			extract($data);
+			$fname   = ltrim($fname);
+			$fname   = rtrim($fname);
+			$lname   = ltrim($lname);
+			$lname   = rtrim($lname);
+			$address = ltrim($address);
+			$address = rtrim($address);
+
 			$query  =  "INSERT INTO `students`(
 												`fname`, 
 												`lname`, 
@@ -73,6 +80,12 @@
 		}
 		public function update_student($data){	
 			extract($data);
+			$fname   = ltrim($fname);
+			$fname   = rtrim($fname);
+			$lname   = ltrim($lname);
+			$lname   = rtrim($lname);
+			$address = ltrim($address);
+			$address = rtrim($address);			
 			$query	= "UPDATE `students` SET 
 												`fname` = '$fname',
 												`lname` = '$lname',
@@ -198,16 +211,24 @@
 
 
 		public function add_teacher($data){
+			
 			extract($data);
+			$fname   = ltrim($fname);
+			$fname   = rtrim($fname);
+			$lname   = ltrim($lname);
+			$lname   = rtrim($lname);
+			$address = ltrim($address);
+			$address = rtrim($address);
+
 			$query  =  "INSERT INTO `teachers`(
 												`fname`,
 												`lname`, 
 												`age`,
-												`qualification`,
-												`gender`,
+												`qualification_id`,
+												`gender_id`,
 												`phone_no`,
 												`address`,
-												`subject`,
+												`subject_id`,
 												`class_id`,
 												`salary`
 											   ) 
@@ -215,11 +236,11 @@
 												'$fname',
 												'$lname',
 												'$age',
-												'$qualification',
-												'$gender',
+												'$qualification_id',
+												'$gender_id',
 												'$phone_no',
 												'$address',
-												'$subject',
+												'$subject_id',
 												'$class_id',
 												'$salary'
 											   )";
@@ -228,7 +249,14 @@
 		}
 		public function update_teacher($data){	
 			extract($data);
-			$query	= "UPDATE `teachers` SET `fname` = '$fname',`lname` = '$lname',`age`='$age',`qualification`='$qualification',`gender`='$gender',`phone_no`='$phone_no',`address`='$address',`subject`='$subject',`class_id`='$class_id',`salary`='$salary' WHERE `id` = '$id' ";
+			$fname   = ltrim($fname);
+			$fname   = rtrim($fname);
+			$lname   = ltrim($lname);
+			$lname   = rtrim($lname);
+			$address = ltrim($address);
+			$address = rtrim($address);
+						
+			$query	= "UPDATE `teachers` SET `fname` = '$fname',`lname` = '$lname',`age`='$age',`qualification_id`='$qualification_id',`gender_id`='$gender_id',`phone_no`='$phone_no',`address`='$address',`subject_id`='$subject_id',`class_id`='$class_id',`salary`='$salary' WHERE `id` = '$id' ";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
@@ -280,7 +308,27 @@
 			return $data;
 		}	
 		public function fetch_teacher(){
-			$query = "SELECT * FROM `teachers` ";
+		$query = "SELECT 	`teachers`.`id`,
+						    `teachers`.`fname`,
+						    `teachers`.`lname`,
+
+						    `teachers`.`age`,
+
+						    `qualifications`.`name` as 	`qualification`,
+						    `gender`.`name` as 		`gender`,
+						    `classes`.`cls_name` as 	`classes`
+
+					   
+	 		  FROM 	   		`teachers`
+	 		  LEFT JOIN 	`qualifications`
+	 		  ON 		   	`teachers`.`qualification_id` = `qualifications`.`id` 
+
+	 		  LEFT JOIN 	`gender`
+	 		  ON 		   	`teachers`.`gender_id` = `gender`.`id`
+	 		  LEFT JOIN 	`classes`
+	 		  ON 		   	`teachers`.`class_id` = `classes`.`id` ";
+
+
 			$res 	= $this->conn->query($query);
 			$i = 0;
 			$data = array();
@@ -335,8 +383,6 @@
 				}
 				$i++;
 			}
-
-			
 			return $data;
 		}
 		public function add_tchr_salary($data){
@@ -348,7 +394,7 @@
 		}
 		public function update_tchr_salary($data){	
 			extract($data);
-			$query	= "UPDATE `tchr_salary` SET `teacher_id` = '$teacher_id',`salary` = '$salary' WHERE `id` = '$id' ";
+			$query	= "UPDATE `tchr_salary` SET `teacher_id` = '$teacher_id',`salary` = '$salary' ";
 			$res 	= $this->conn->query($query);
 			return $res;
 		}
@@ -467,6 +513,15 @@
 				return true;
 			}
 		}
+		
+		public function username(){
+			$query = "SELECT * FROM `users`";
+			$res   = $this->conn->query($query);
+			return ($res->fetch_assoc());
+		}
+
+
+
 		public function debug($data){
 			echo "<pre>";
 			print_r($data);

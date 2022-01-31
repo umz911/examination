@@ -31,7 +31,7 @@
 									<div class="card-body">
 										<div class="form-group">
 											<label for="cls_name">Class name <span class="text-danger">*</span></label>
-											<input type="name" class="form-control" name = "cls_name" id="cls_name" placeholder=" Enter class" required  minlength="6" maxlength="8" size="10">
+											<input type="text" class="form-control" name = "cls_name" id="cls_name" placeholder=" Enter class" required  minlength="6" maxlength="15" size="15">
 										</div>
 									</div>
 									<div class="card-footer" style="text-align: center;">

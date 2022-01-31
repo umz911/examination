@@ -9,6 +9,9 @@
 	if (isset($_GET['id'])){
 		$id 	   = $_GET['id'];
 		$student   = $obj->get_student($id);
+		if(!($student)){
+			header("location:students.php");
+		}
 	}
 ?>
 <body>
@@ -40,7 +43,7 @@
 													<div class="form-group">
 														<input type="hidden"  name = "id" value = "<?php echo $student['id'];?>">
 														<label for="fname">First name <span class="text-danger">*</span></label>
-														<input type="text" class="form-control" name = "fname" value = "<?php echo ucwords($student['fname']);?>" id="fname" placeholder="First name" required>
+														<input type="text" class="form-control" name = "fname" value = "<?php echo ucwords (trim($student['fname']));?>" id="fname" placeholder="First name" required>
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -147,7 +150,7 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="phone_no">Phone Number <span class="text-danger">*</span> </label>
-														<input type="tel" class="form-control" min="2" name = "phone_no" pattern=".{11}"  value = "<?php echo $student['phone_no'];?>" id="phone_no" placeholder="+92" required>
+														<input type="tel" class="form-control"  name = "phone_no"  pattern="[0-9]{11}"  value = "<?php echo $student['phone_no'];?>" id="phone_no"  placeholder="+92" required>
 													</div>
 												</div>						
 											</div>

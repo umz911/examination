@@ -34,7 +34,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="fname">First name <span class="text-danger">*</span> </label>
-													<input type="text" class="form-control" name = "fname" id="fname" required placeholder="First name">
+													<input type="text" class="form-control" name = "fname" id="fname" required placeholder="First name" pattern=" ">
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -112,7 +112,7 @@
 											<div class="col-md-3">
 												<div class="form-group">
 													<label for="phone_no">Phone number <span class="text-danger">*</span> </label>
-													<input type="tel" class="form-control" name = "phone_no" id="phone_no" pattern=".{11}"  required placeholder="+92">
+													<input type="tel" class="form-control" name = "phone_no" id="phone_no" pattern="[0-9]{11}"  required placeholder="+92" min="11">
 												</div>
 											</div>
 										</div>

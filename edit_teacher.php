@@ -13,6 +13,9 @@
 	if (isset($_GET['id'])){
 		$id 	   = $_GET['id'];
 		$teacher   = $obj->get_teacher($id);
+		if(!($teacher)){
+			header("location:teachers.php");
+		}
 	}
 ?>
 <body>
@@ -58,14 +61,14 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="qualification">Qualification <span class="text-danger">*</span></label>
-														<select name="qualification" id="qualification" class="form-control" required>
+														<select name="qualification_id" id="qualification_id" class="form-control" required>
 																<option selected disabled value="">--- Please select ---</option>					
 																<?php foreach ($data as $key => $value) { ?>
-																<?php if($value['name'] == $teacher['qualification']){?>
+																<?php if($value['id'] == $teacher['qualification_id']){?>
 
-																	<option selected value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>
+																	<option selected value="<?php echo $value['id']?>"><?php echo ucwords($value['name'])?> </option>
 																<?php }else{ ?>
-																	<option value="<?php echo $value['name']?>"><?php echo ucwords($value['name'])?> </option>S
+																	<option value="<?php echo $value['id']?>"><?php echo ucwords($value['name'])?> </option>S
 																<?php }?>
 
 																<?php }?>
@@ -75,23 +78,23 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="gender">Gender <span class="text-danger">*</span> </label>
-														<select type="number" class="form-control" name = "gender" id="gender" required>
-															<option selected disabled value="">--- Please select ---</option>
-															<?php if($teachers['gender'] == 0){?>
+														<select type="number" class="form-control" name = "gender_id" id="gender_id" required>
+															<option selected disabled value="">---Please select---</option>
+															<?php if($teacher['gender_id'] == 1){?>
 																
-																<option value="0" selected>Male</option>
-																<option value="1">Female</option>
-																<option value="2">Other</option>
+																<option value="1" selected>Male</option>
+																<option value="2">Female</option>
+																<option value="3">Other</option>
 
-															<?php }else  if($teachers['gender'] == 1){?>
-																<option value="0" >Male</option>
-																<option value="1"selected>Female</option>
-																<option value="2">Other</option>
+															<?php }else  if($teacher['gender_id'] == 2){?>
+																<option value="1" >Male</option>
+																<option value="2"selected>Female</option>
+																<option value="3">Other</option>
 															<?php }else{?>
 
-																<option value="0" >Male</option>
-																<option value="1">Female</option>
-																<option value="2" selected>Other</option>
+																<option value="1" >Male</option>
+																<option value="2">Female</option>
+																<option value="3" selected>Other</option>
 															<?php }?>
 														</select>
 													</div>													
@@ -101,13 +104,13 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="subject">Subject <span class="text-danger">*</span> </label>
-														<select name="subject" id="subject"  class="form-control" required>
-															<option selected disabled value="">--- Please select ---</option>
+														<select name="subject_id" id="subject_id"  class="form-control" required style="padding: 0px 18.5px;">
+															<option  disabled value="">--- Please select ---</option>
 															<?php foreach ($sub as $key => $value) { ?>
-															<?php if($value['subject_name'] == $teacher['subject']){?>
-																<option selected value="<?php echo $value['subject_name']?>"><?php echo ucwords($value['subject_name'])?> </option>
+															<?php if($value['id'] == $teacher['subject_id']){?>
+																<option selected value="<?php echo $value['id']?>"><?php echo ucwords($value['subject_name'])?> </option>
 															<?php }else{ ?>
-																<option value="<?php echo $value['subject_name']?>"><?php echo ucwords($value['subject_name'])?> </option>
+																<option value="<?php echo $value['id']?>"><?php echo ucwords($value['subject_name'])?> </option>
 															<?php }?>
 
 															<?php }?>
@@ -123,13 +126,13 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="class_id">Class<span class="text-danger">*</span> </label>
-														<select name="class_id" id="class_id"  class="form-control" required>
+														<select name="class_id" id="class_id"  class="form-control" required style="padding: 0px 14px;">
 															<option selected disabled value="">--- Please select ---</option>
 															<?php foreach ($class as $key => $value) { ?>
-															<?php if($value['cls_name'] == $teacher['class_id']){?>
-																<option selected value="<?php echo $value['cls_name']?>"><?php echo ucwords($value['cls_name'])?> </option>
+															<?php if($value['id'] == $teacher['class_id']){?>
+																<option selected value="<?php echo $value['id']?>"><?php echo ucwords($value['cls_name'])?> </option>
 															<?php }else{ ?>
-																<option value="<?php echo $value['cls_name']?>"><?php echo ucwords($value['cls_name'])?> </option>
+																<option value="<?php echo $value['id']?>"><?php echo ucwords($value['cls_name'])?> </option>
 															<?php }?>
 
 															<?php }?>
@@ -139,7 +142,7 @@
 												<div class="col-md-3">
 													<div class="form-group">
 														<label for="phone_no">Phone Number <span class="text-danger">*</span></label>
-														<input type="tel" class="form-control" name = "phone_no"  value = "<?php echo $teacher['phone_no'];?>" id="phone_no" pattern=".{11}" placeholder="+92">
+														<input type="tel" class="form-control" name = "phone_no"  value = "<?php echo $teacher['phone_no'];?>" id="phone_no"pattern="[0-9]{11}" placeholder="+92">
 													</div>													
 												</div>												
 											</div>												

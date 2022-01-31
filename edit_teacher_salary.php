@@ -11,6 +11,9 @@
 	if (isset($_GET['id'])){
 		$id 	          = $_GET['id'];
 		$teacher_salary   = $obj->get_tchr_salary($id);
+		if(!($teacher_salary)){
+			header("location:teachers_salary.php");
+		}	
 	}
 ?>
 <body>
@@ -37,18 +40,24 @@
 									</div>
 									<div class="card-body">
 										<form action="process.php" method="POST">
-											<div class="form-group">	
-												<label for="teacher_id">Teacher Name <span class="text-danger">*</span></label>
-												<select name="teacher_id" id="teacher_id" class="form-control">
-													<?php foreach ($teachers as $key => $value) { ?>
-														
-													<option value="<?php echo $value['id']?>" <?php echo $selected = ($value['id'] == $teacher_salary['teacher_id']) ? 'selected': ''; ?>><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>
-													<?php }?>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="salary">Salary <span class="text-danger">*</span></label>
-												<input type="text" class="form-control" name = "salary" value = "<?php echo $teacher_salary['salary'];?>" id="salary" placeholder="salary" readonly>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">	
+														<label for="teacher_id">Teacher Name <span class="text-danger">*</span></label>
+														<select name="teacher_id" id="teacher_id" class="form-control">
+															<option  disabled value="">--- Please select ---</option>
+															<?php foreach ($teachers as $key => $value) { ?>
+															<option value="<?php echo $value['id']?>" <?php echo $selected = ($value['id'] == $teacher_salary['teacher_id']) ? 'selected': ''; ?>><?php echo ucwords($value['fname']) . " ". ucwords($value['lname'])?> </option>
+															<?php }?>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="salary">Salary <span class="text-danger">*</span></label>
+														<input type="text" class="form-control" name = "salary" value = "<?php echo $teacher_salary['salary'];?>" id="salary" placeholder="salary" readonly>
+													</div>
+												</div>
 											</div>
 											<div class="card-footer" style="text-align: center;">
 												<button type="submit" name="submit_btn" value="update_tchr_salary" class="btn btn-primary btn-lg">Submit</button>
