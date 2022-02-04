@@ -6,6 +6,13 @@
 	  $obj->is_logged_in();
 	  $data  = $obj->fetch_qualifications();
 ?>
+<style type="text/css">
+		.cus_error{
+			color:red;
+			font-style: italic;
+			font-size: 10px;"
+	}
+</style>
 <body>
 	<div class="wrapper">
 		<div class="main-header" data-background-color="purple">
@@ -34,13 +41,17 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="fname">First name <span class="text-danger">*</span> </label>
-													<input type="text" class="form-control" name = "fname" id="fname" required placeholder="First name" pattern=" ">
+													<input type="text" class="form-control" name = "fname" id="fname" required placeholder="First name" >
+													<span id="fname-error" class="cus_error"></span>
+
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="lname">Last name <span class="text-danger">*</span> </label>
-													<input type="text" class="form-control" name = "lname" id="lname"  required placeholder="Last name">
+													<input type="text" class="form-control" name = "lname" id="lname" required  placeholder="Last name">
+													<span id="lname-error" class="cus_error"></span>
+
 												</div>
 											</div>
 										</div>
@@ -48,13 +59,17 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="date_of_admission">Date of admission <span class="text-danger">*</span> </label>
-													<input type="date" class="form-control" name = "date_of_admission" id="Date of admission" required>
+													<input type="date" class="form-control" name = "date_of_admission" id="date_of_admission" required>
+													<span id="date-of-error" class="cus_error"></span>
+
 												</div>												
 											</div>											
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="date_of_birth">Date of birth <span class="text-danger">*</span> </label>
-													<input type="date" class="form-control" name = "date_of_birth" id="Date of birth" required>
+													<input type="date" class="form-control" name = "date_of_birth" id="date_of_birth" required>
+													<span id="fname-error" class="cus_error"></span>
+
 												</div>
 											</div>
 										</div>
@@ -64,6 +79,8 @@
 													<label for="qualification_id">Qualification <span class="text-danger">*</span> </label>
 														<select name="qualification_id" id="qualification_id" class="form-control" required>
 															<option selected disabled value="">--- Please select ---</option>
+															<span id="fname-error" class="cus_error"></span>
+
 															<?php foreach ($data as $key => $value) { ?>
 															<option value="<?php echo $value['id']?>"><?php echo ucwords($value['name'])?> </option>
 															<?php }?>
@@ -99,7 +116,7 @@
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label for="martial_status_id">Martial status <span class="text-danger">*</span> </label>
+													<label for="martial_status_id">Marital Status <span class="text-danger">*</span> </label>
 													<select type="number" class="form-control" name = "martial_status_id" id="martial_status_id" required style="padding: 0px 18.5px;">
 														<option selected disabled value="">--- Please select ---</option>
 														<option value="1">Single</option>
@@ -137,6 +154,85 @@
 			</div>			
 		</form>
 	</div>
+	<script type="text/javascript">
+		// $(document).ready(function (){
+
+		// 	// validate the field in which you are typing using input ID
+		// 	function cus_validate(id){
+		// 		var len = ( ($('#'+id).val().length));
+
+		// 		if( len <= 0){
+		// 			$('#'+id).css('border','1px solid red');
+		// 			$('#'+id).focus();
+		// 			$('#'+id+'-error').text("Please fill this field");
+		// 			return false;
+
+		// 		}else{
+		// 			$('#'+id).css('border','1px solid green');
+		// 			$('#'+id+'-error').text("");
+		// 			return true;
+
+		// 		}
+		// 	}
+
+		// 	// getting Id of input field in which you are typing
+		// 	$("input").focusout(function(){
+		// 		 var id = $(this).attr('id');
+		// 		 return cus_validate(id);	
+		// 	});
+		// 	$("select").focusout(function(){
+		// 		 var id = $(this).attr('id');
+		// 		 return cus_validate(id);	
+		// 	});
+		// 	// validate all the fields in the forms
+		// 	function validate_all_fields(){
+
+		// 		if( (cus_validate("fname"))  && (cus_validate("lname")) 
+		// 								 	 && (cus_validate("date_of_admission")) 
+		// 									 && (cus_validate("date_of_birth")) 
+		// 			              			 && (cus_validate("qualification_id"))
+		// 			              			 && (cus_validate("gender_id"))
+		// 			              			 && (cus_validate("age")) 
+		// 			              			 && (cus_validate("fees"))
+		// 			              			 && (cus_validate("martial_status_id"))
+		// 			              			 && (cus_validate("phone_no"))
+		// 			              			 && (cus_validate("address"))    ){
+					              			   
+		// 			 	return true;
+		// 			}else{
+		// 				return false;
+		// 			}
+				
+		// 	}
+
+
+		// 	$('#submit_btn').click(function (){
+		// 		// call validate_all_fields functions before submit.
+		// 		var res =  validate_all_fields();
+		// 		if(res){
+		// 				// alert("Wow, You have entered all fields");
+
+		// 				$.ajax({
+		// 					type: "POST",
+		// 					url: "request.php",
+		// 					data:{
+		// 					  	data: $('#form').serialize(),
+		// 						fn  :'add_student'
+		// 					},
+		// 					success: function (result){
+
+
+		// 						var res = $.parseJSON(result);
+		// 						$('#salary').val(res.salary)
+		// 					}
+		// 				});
+		// 			}else{
+		// 				alert("soory");
+		// 			}
+
+		// 	})
+		// })
+	</script>	
 <?php require "footbar.php";?>
 </body>
 </html>

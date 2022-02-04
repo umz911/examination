@@ -125,7 +125,7 @@
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
-														<label for="martial_status">Martial Status <span class="text-danger">*</span> </label>
+														<label for="martial_status">Marital Status <span class="text-danger">*</span> </label>
 														<select type="number" class="form-control" name = "martial_status_id" id="martial_status_id" required style="padding: 0px 18.5px;">
 															<option selected disabled value="">--- Please select ---</option>
 															<?php if($student['martial_status_id'] == 1){?>
@@ -174,6 +174,85 @@
 			</div>	
 		</div>
 	</div>
+	<script type="text/javascript">
+		$(document).ready(function (){
+
+			// validate the field in which you are typing using input ID
+			function cus_validate(id){
+				var len = ( ($('#'+id).val().length));
+
+				if( len <= 0){
+					$('#'+id).css('border','1px solid red');
+					$('#'+id).focus();
+					$('#'+id+'-error').text("Please fill this field");
+					return false;
+
+				}else{
+					$('#'+id).css('border','1px solid green');
+					$('#'+id+'-error').text("");
+					return true;
+
+				}
+			}
+
+			// getting Id of input field in which you are typing
+			$("input").focusout(function(){
+				 var id = $(this).attr('id');
+				 return cus_validate(id);	
+			});
+			$("select").focusout(function(){
+				 var id = $(this).attr('id');
+				 return cus_validate(id);	
+			});
+			// validate all the fields in the forms
+			function validate_all_fields(){
+
+				if( (cus_validate("fname"))  && (cus_validate("lname")) 
+										 	 && (cus_validate("date_of_admission")) 
+											 && (cus_validate("date_of_birth")) 
+					              			 && (cus_validate("qualification_id"))
+					              			 && (cus_validate("gender_id"))
+					              			 && (cus_validate("age")) 
+					              			 && (cus_validate("fees"))
+					              			 && (cus_validate("martial_status_id"))
+					              			 && (cus_validate("phone_no"))
+					              			 && (cus_validate("address"))    ){
+					              			   
+					 	return true;
+					}else{
+						return false;
+					}
+				
+			}
+
+
+			$('#submit_btn').click(function (){
+				// call validate_all_fields functions before submit.
+				var res =  validate_all_fields();
+				if(res){
+						// alert("Wow, You have entered all fields");
+
+						$.ajax({
+							type: "POST",
+							url: "request.php",
+							data:{
+							  	data: $('#form').serialize(),
+								fn  :'add_student'
+							},
+							success: function (result){
+
+
+								var res = $.parseJSON(result);
+								$('#salary').val(res.salary)
+							}
+						});
+					}else{
+						alert("soory");
+					}
+
+			})
+		})
+	</script>		
 <?php require "footbar.php";?>
 </body>
 </html>

@@ -5,6 +5,16 @@
 	  require ('db.php');
 	  $obj->is_logged_in();
 ?>
+<?php 
+if((isset($_GET['msg'])) && (($_GET['msg']) == 0) ){ ?>
+
+	<script>
+		alert("Class already exsist");
+	</script>
+
+<?php } 
+
+?>
 <body>
 	<div class="wrapper">
 		<div class="main-header" data-background-color="purple">
